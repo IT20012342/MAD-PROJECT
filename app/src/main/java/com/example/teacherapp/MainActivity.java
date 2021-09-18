@@ -1,8 +1,10 @@
 package com.example.teacherapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -18,11 +20,14 @@ import com.example.teacherapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    //ImageView cal;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //cal = findViewById(R.id.imageView7);
+
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -48,6 +53,19 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        cal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,VoiceCal.class);
+                startActivity(intent);
+            }
+        });
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
