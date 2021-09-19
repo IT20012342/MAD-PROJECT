@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
@@ -31,8 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText RegistrationEmail, RegistrationPassword, RegistrationMobile;
     private Button RegistrationButton;
     private TextView RegistrationPageQuestion;
-    private FirebaseAuth mAuth;
     private ProgressDialog loader;
+
+    private DatabaseReference reference;
+    private String onlineUserID;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,11 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        if (mUser != null) {
+            onlineUserID = mUser.getUid();
+        }
+        reference = FirebaseDatabase.getInstance().getReference().child("user").child(onlineUserID);
 
         loader = new ProgressDialog(this);
 
@@ -64,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = RegistrationEmail.getText().toString().trim();
                 String password = RegistrationPassword.getText().toString().trim();
                 String mobile = RegistrationMobile.getText().toString().trim();
+                String id = reference.push().getKey();
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -99,12 +111,28 @@ public class RegisterActivity extends AppCompatActivity {
                     loader.setCanceledOnTouchOutside(false);
                     loader.show();
 
+                    User user = new User(email, mobile, id);
+                    reference.child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                loader.dismiss();
+                            }
+                            else {
+                                String error = task.getException().toString();
+                                Toast.makeText(RegisterActivity.this, "Failed : " + error, Toast.LENGTH_SHORT).show();
+                                loader.dismiss();
+                            }
+                        }
+                    });
+
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()) {
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 finish();
                                 loader.dismiss();

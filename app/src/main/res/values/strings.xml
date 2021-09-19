@@ -37,4 +37,25 @@
     <string name="email_hint_reg">Enter Email</string>
     <string name="password_hint_reg">Enter Password</string>
     <string name="already_have_an_account_login">Already have an Account? Login</string>
+
+    //ToDoList Strings
+    <string name="daily_tasks">Daily Tasks</string>
+    <string name="generate_a_new_qr_code_that_includes_the_enrollment_code_for_the_grade_10_weekday_class">Generate a new QR code that includes the enrollment code for the Grade 10 weekday class</string>
+    <string name="generate_a_qr_code">Generate a QR Code</string>
+    <string name="create_a_new_class_for_grade_11_weekend_batch">Create a new class for Grade 11 Weekend batch</string>
+    <string name="create_new_class">Create New Class</string>
+    <string name="finalize_grade_10_maths_and_science_exam_papers">Finalize Grade 10 Maths and Science exam papers</string>
+    <string name="finalize_exam_papers">Finalize Exam Papers</string>
+    <string name="date">11/08/2021</string>
+
+    //AddToDo Strings
+    <string name="add_new_task">Add New Task</string>
+    <string name="cancel">Cancel</string>
+    <string name="task">Task</string>
+    <string name="save">Save</string>
+    <string name="enter_task_description">Enter Task Description</string>
+    <string name="backbtn">BackBTN</string>
+    <string name="description">Description</string>
+    <string name="enter_task_name">Enter Task Name</string>
+
 </resources>
