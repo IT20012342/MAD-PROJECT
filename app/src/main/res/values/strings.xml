@@ -19,7 +19,7 @@
     <string name="to_do">To-Do</string>
     <string name="to_do_list">To-Do List</string>
     <string name="notes">Notes</string>
-    <string name="gpa_calculator">GPA Calculator</string>
+    <string name="calculators">Calculators</string>
 
     //Login Strings
     <string name="login">Login</string>
