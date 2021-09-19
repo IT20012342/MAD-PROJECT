@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/HiddenTitleTheme">
         <activity
-            android:name=".ShedulerActivity"
+            android:name=".ResetPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ToDoListActivity" 
             android:exported="true" />
         <activity
             android:name=".VoiceCal"
@@ -22,6 +25,9 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ShedulerActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

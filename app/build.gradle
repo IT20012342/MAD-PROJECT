@@ -49,9 +49,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
 
-    //counting and expression
+//counting and expression
     implementation('net.objecthunter:exp4j:0.4.4')
-
 }
 
 apply plugin: 'com.google.gms.google-services'

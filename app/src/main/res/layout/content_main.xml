@@ -134,7 +134,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/todoicon"
                     android:layout_width="94dp"
                     android:layout_height="89dp"
                     android:layout_alignParentStart="true"
@@ -151,7 +151,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="69dp"
                     android:layout_height="18dp"
-                    android:layout_below="@+id/imageView3"
+                    android:layout_below="@+id/todoicon"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
