@@ -7,14 +7,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +37,7 @@ public class ToDoListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
     private ProgressDialog saveloader;
+    ImageView imageView;
 
     private DatabaseReference reference;
     private String onlineUserID;
@@ -49,6 +56,16 @@ public class ToDoListActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        //Back Button Function
+        imageView = findViewById(R.id.todoback);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ToDoListActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         saveloader = new ProgressDialog(this);
 
@@ -79,6 +96,8 @@ public class ToDoListActivity extends AppCompatActivity {
         AlertDialog dialog = myDialog.create();
         dialog.setCancelable(false);
         dialog.show();
+
+
 
         EditText task = myView.findViewById(R.id.todolist_task);
         EditText description = myView.findViewById(R.id.todolist_description);
@@ -137,6 +156,59 @@ public class ToDoListActivity extends AppCompatActivity {
             }
         });
 
+
+
         dialog.show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<ToDoListModel> options = new FirebaseRecyclerOptions.Builder<ToDoListModel>().setQuery(reference, ToDoListModel.class).build();
+
+        FirebaseRecyclerAdapter<ToDoListModel, MyViewHolder> adapter = new FirebaseRecyclerAdapter<ToDoListModel, MyViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull ToDoListModel model) {
+                holder.setDate(model.getDate());
+                holder.setTask(model.getTask());
+                holder.setDescription(model.getDescription());
+            }
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.todoretrieved_layout, parent, false);
+                return new MyViewHolder(view);
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        View nView;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nView = itemView;
+        }
+
+        public void setTask(String task) {
+            TextView taskTextView = nView.findViewById(R.id.todoitemtopic);
+            taskTextView.setText(task);
+        }
+
+        public void setDescription(String description) {
+            TextView descTextView = nView.findViewById(R.id.todoitemdescription);
+            descTextView.setText(description);
+        }
+
+        public void setDate(String date) {
+            TextView dateTextView = nView.findViewById(R.id.tododate);
+            dateTextView.setText(date);
+        }
     }
 }

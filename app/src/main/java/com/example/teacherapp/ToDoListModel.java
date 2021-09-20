@@ -1,6 +1,6 @@
 package com.example.teacherapp;
 
-public class ToDoListModel {
+public class ToDoListModel extends Object {
 
     private String task, description, id ,date;
 
