@@ -95,9 +95,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(MenuItem item) {
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(MainActivity.this, "Sign Out Successfully!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        FirebaseAuth.getInstance().signOut();
+//        Toast.makeText(MainActivity.this, "Sign Out Successfully!", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        startActivity(intent);
+    }
+
+    public void goToClass(View view) {
+        Toast.makeText(MainActivity.this, "Loading classes...", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, classView.class);
         startActivity(intent);
     }
 }
