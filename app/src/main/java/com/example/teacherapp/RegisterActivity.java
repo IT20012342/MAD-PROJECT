@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button RegistrationButton;
     private TextView RegistrationPageQuestion;
     private ProgressDialog loader;
+    ImageView imageView;
 
     private DatabaseReference reference;
     private String onlineUserID;
@@ -45,6 +47,16 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
+
+        // Back button
+        imageView = findViewById(R.id.registerback);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -149,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 return;
             }
-            });
+        });
 
 
     }
