@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         loginPageQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -48,9 +48,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.firebaseui:firebase-ui-database:6.0.2'
 
 //counting and expression
     implementation('net.objecthunter:exp4j:0.4.4')
+
+    //Card View Dependency
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
