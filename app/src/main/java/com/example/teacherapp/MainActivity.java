@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -90,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void gotoCal(View view){
         Intent intent = new Intent(this, VoiceCal.class);
+        startActivity(intent);
+    }
+
+    public void logout(MenuItem item) {
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(MainActivity.this, "Sign Out Successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }
