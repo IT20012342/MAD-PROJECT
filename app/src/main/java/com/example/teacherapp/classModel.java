@@ -2,9 +2,18 @@ package com.example.teacherapp;
 
 public class classModel {
 
-    private String name,batch,time,description, id ;
+    private String name;
+    private String description;
+    private String batch;
+    private String time;
+    private String id;
 
     public classModel() {
+        this.name = "";
+        this.description = "";
+        this.batch = " ";
+        this.time = "";
+        this.id = " ";
     }
 
     public classModel(String name,String description, String batch, String time, String id) {

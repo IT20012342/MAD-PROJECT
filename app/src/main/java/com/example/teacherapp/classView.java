@@ -25,7 +25,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,6 +36,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 
@@ -49,10 +53,13 @@ public class classView extends AppCompatActivity {
     private ProgressDialog saveloader;
 
 
-
     ListView listView;
-    String mTitle[] = {"Physics", "Maths", "Software Development", "History", "International law"};
-    String mDescription[] = {"Physics Description", "Maths Description", "IT Description", "sad Description", "Law Description"};
+    //String mTitle[] = {"Physics", "Maths", "Software Development", "History", "International law"};
+    //String mDescription[] = {"Physics Description", "Maths Description", "IT Description", "sad Description", "Law Description"};
+
+    private RecyclerView recyclerView;
+    classAdapter adapter;
+
 
     private ActionBar actionBar;
 
@@ -76,37 +83,49 @@ public class classView extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        if (mUser != null) {
+            onlineUserID = mUser.getUid();
+        }
+        reference = FirebaseDatabase.getInstance().getReference().child("classes").child(onlineUserID);
+        recyclerView = findViewById(R.id.recyclerClass);
+
+        // To display the Recycler view linearly
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // It is a class provide by the FirebaseUI to make a
+        // query in the database to fetch appropriate data
+        FirebaseRecyclerOptions<classModel> options = new FirebaseRecyclerOptions.Builder<classModel>()
+                .setQuery(reference, classModel.class)
+                .build();
+        // Connecting object of required Adapter class to
+        // the Adapter class itself
+        adapter = new classAdapter(options);
+        // Connecting Adapter class with the Recycler view
+        recyclerView.setAdapter(adapter);
 
 
-
-
-
-        listView = findViewById(R.id.listView3);
-
-        MyAdapter adapter = new MyAdapter(this, mTitle, mDescription);
-        listView.setAdapter(adapter);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+   /*     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position ==  0) {
+                if (position == 0) {
                     Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
                 }
-                if (position ==  0) {
+                if (position == 0) {
                     Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
                 }
-                if (position ==  0) {
+                if (position == 0) {
                     Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
                 }
-                if (position ==  0) {
+                if (position == 0) {
                     Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
                 }
-                if (position ==  0) {
+                if (position == 0) {
                     Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        }); */
 
 
         saveloader = new ProgressDialog(this);
@@ -117,8 +136,6 @@ public class classView extends AppCompatActivity {
             onlineUserID = mUser.getUid();
         }
         reference = FirebaseDatabase.getInstance().getReference().child("classes").child(onlineUserID);
-
-
 
 
         FloatingActionButton addNewClass = findViewById(R.id.addClass);
@@ -163,34 +180,33 @@ public class classView extends AppCompatActivity {
                         String id = reference.push().getKey();
 
 
-                        if(TextUtils.isEmpty(nDescription)) {
-                            nDescription  = "Auto Generated Description!";
+                        if (TextUtils.isEmpty(nDescription)) {
+                            nDescription = "Auto Generated Description!";
                         }
-                        if(TextUtils.isEmpty(nBatch)) {
-                            nBatch = Double.toString(Math.random()*1000);
+                        if (TextUtils.isEmpty(nBatch)) {
+                            int x = (int) Math.random() * 1000;
+                            nBatch = Integer.toString(x);
                         }
-                        if(TextUtils.isEmpty(nTime)) {
+                        if (TextUtils.isEmpty(nTime)) {
                             nTime = "00:00";
                         }
 
-                        if(TextUtils.isEmpty(nClass)) {
+                        if (TextUtils.isEmpty(nClass)) {
                             name.setError("Class name is required");
                             return;
-                        }
-                        else{
+                        } else {
                             saveloader.setMessage("Saving the new class");
                             saveloader.setCanceledOnTouchOutside(false);
                             saveloader.show();
 
-                            classModel cmodel = new classModel(nClass, nDescription, nBatch, nTime,id);
+                            classModel cmodel = new classModel(nClass, nDescription, nBatch, nTime, id);
                             reference.child(id).setValue(cmodel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()) {
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(classView.this, "Class Saved Successfully!", Toast.LENGTH_SHORT).show();
                                         saveloader.dismiss();
-                                    }
-                                    else {
+                                    } else {
                                         String error = task.getException().toString();
                                         Toast.makeText(classView.this, "Failed : " + error, Toast.LENGTH_SHORT).show();
                                         saveloader.dismiss();
@@ -213,51 +229,36 @@ public class classView extends AppCompatActivity {
     //back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         return super.onOptionsItemSelected(item);
 
     }
 
 
 
-
-
-
-
-
-    class MyAdapter extends ArrayAdapter<String> {
-
-        Context context;
-        String rTitle[];
-        String rDescription[];
-
-        MyAdapter (Context c, String title[], String description[] /*, int imgs[] */) {
-            super(c, R.layout.row, R.id.textView1, title);
-            this.context = c;
-            this.rTitle = title;
-            this.rDescription = description;
-            //this.rImgs = imgs;
-
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
-            ImageView images = row.findViewById(R.id.image);
-            TextView myTitle = row.findViewById(R.id.textView1);
-            TextView myDescription = row.findViewById(R.id.textView2);
-
-            // now set our resources on views
-            //images.setImageResource(rImgs[position]);
-            myTitle.setText(rTitle[position]);
-            myDescription.setText(rDescription[position]);
-
-
-
-
-            return row;
-        }
+    // Function to tell the app to start getting
+    // data from database on starting of the activity
+  @Override protected void onStart()
+    {
+        super.onStart();
+        adapter.startListening();
     }
+
+    // Function to tell the app to stop getting
+    // data from database on stoping of the activity
+    @Override protected void onStop()
+    {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+
+
+
 }
+
+
+
+
+
+

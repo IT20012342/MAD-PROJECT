@@ -55,7 +55,7 @@
                     app:srcCompat="@drawable/attendance" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/desc"
                     android:layout_width="78dp"
                     android:layout_height="19dp"
                     android:layout_below="@+id/imageView"
