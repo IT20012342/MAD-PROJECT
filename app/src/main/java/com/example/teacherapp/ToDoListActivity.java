@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -43,6 +44,11 @@ public class ToDoListActivity extends AppCompatActivity {
     private String onlineUserID;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
+    // For the update task
+    private String key = "";
+    private String task;
+    private String description;
 
 
     @Override
@@ -173,6 +179,17 @@ public class ToDoListActivity extends AppCompatActivity {
                 holder.setDate(model.getDate());
                 holder.setTask(model.getTask());
                 holder.setDescription(model.getDescription());
+
+                holder.nView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        key = getRef(position).getKey();
+                        task = model.getTask();
+                        description = model.getDescription();
+
+                        updateTask();
+                    }
+                });
             }
 
             @NonNull
@@ -210,5 +227,56 @@ public class ToDoListActivity extends AppCompatActivity {
             TextView dateTextView = nView.findViewById(R.id.tododate);
             dateTextView.setText(date);
         }
+    }
+
+    private void updateTask() {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.activity_updatetodo, null);
+        myDialog.setView(view);
+
+        AlertDialog dialog = myDialog.create();
+
+        EditText nTask = view.findViewById(R.id.todo_updatetask);
+        EditText nDescription = view.findViewById(R.id.todo_updatedescription);
+
+        nTask.setText(task);
+        nTask.setSelection(task.length()); // Curser will appear at the end of task name
+
+        nDescription.setText(description);
+        nDescription.setSelection(description.length());
+
+        Button deleteButton = view.findViewById(R.id.todoup_deletebtn);
+        Button saveButton = view.findViewById(R.id.todoup_updatebtn);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                task = nTask.getText().toString().trim();
+                description = nDescription.getText().toString().trim();
+
+                // Get the Date
+                String date = DateFormat.getDateInstance().format(new Date());
+
+                ToDoListModel model = new ToDoListModel(task, description, key, date);
+
+                reference.child(key).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        
+                        if(task.isSuccessful()) {
+                            Toast.makeText(ToDoListActivity.this, "Task Updated Successfully!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            String err = task.getException().toString();
+                            Toast.makeText(ToDoListActivity.this, "Task Update Failed!" + err, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
