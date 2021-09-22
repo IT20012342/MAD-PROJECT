@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#145fff">
+        android:background="@color/purple_500">
 
         <ImageView
             android:id="@+id/todoback"
