@@ -64,4 +64,40 @@
     <string name="speech_not_supported">Sorry! Your device does not support speech input </string>
     <string name="tap_on_mic">Tap on mic to speak</string>
 
+
+
+    //class strings
+    <string name="addClass">Add New Class</string>
+    <string name="classname">Class</string>
+
+    <string name="title_activity_input_student">inputStudent</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="update">UPDATE</string>
+    <string name="datex">Date</string>
+    <string name="edit">View Student List</string>
+    <string name="view_student_list">View Student List</string>
+    <string name="add_new_student">Add New Student</string>
+    <string name="main_title">Main Title</string>
+    <string name="studentName">Student Name</string>
+    <string name="Mobile">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="title_activity_student_update_student">Student_UpdateStudent</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
+    <string name="add_new_class">Add New Class</string>
+    <string name="enter_class_name">Enter Class Name</string>
+    <string name="enter_descsription">Enter Descsription</string>
+    <string name="enter_batch">Enter Batch</string>
+    <string name="batch">Batch</string>
+    <string name="time">Time</string>
+
+
+
 </resources>
