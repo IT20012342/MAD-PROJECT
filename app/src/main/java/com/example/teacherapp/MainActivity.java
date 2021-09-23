@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    ImageView todoicon;
+    ImageView todoicon, qricon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         todoicon = findViewById(R.id.todoicon);
+        qricon = findViewById(R.id.qricon);
 
         todoicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ToDoListActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        qricon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRActivity.class);
+                startActivity(intent);
             }
         });
 
