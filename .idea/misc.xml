@@ -30,10 +30,13 @@
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/drawable/background.xml" value="0.2203125" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.2203125" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_addtodo.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_generate_qrcode.xml" value="0.22" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_qractivity.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_reset_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_scan_qractivity.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_to_do_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_updatetodo.xml" value="0.25" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_voice_cal.xml" value="0.20416666666666666" />
