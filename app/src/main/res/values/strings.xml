@@ -58,12 +58,24 @@
     <string name="description">Description</string>
     <string name="enter_task_name">Enter Task Name</string>
 
+    //QR Code Strings
+    <string name="qr_code_generator">QR Code Generator</string>
+    <string name="text_below_qr">Grant camera permissions and go to QR Code scanner and Generation page</string>
+    <string name="camera_permission">Camera Permission</string>
+    <string name="generate_qr_code">Generate QR Code</string>
+    <string name="qr_code_generater">QR Code Generator</string>
+    <string name="enter_text_url">Enter Text/URL</string>
+    <string name="generate">Generate</string>
+    <string name="download">Download</string>
+    <string name="text_url">Text / URL</string>
+    <string name="copy">COPY</string>
+    <string name="qr_code_scanner">QR Code Scanner</string>
+
 
     //voice cal Strings
     <string name="speech_prompt"> Say something&#8230;</string>
     <string name="speech_not_supported">Sorry! Your device does not support speech input </string>
     <string name="tap_on_mic">Tap on mic to speak</string>
-
 
 
     //class strings
@@ -102,6 +114,5 @@
     <string name="editx">Edit</string>
     <string name="delete">Delete</string>
     <string name="update_class">Update Class</string>
-
 
 </resources>

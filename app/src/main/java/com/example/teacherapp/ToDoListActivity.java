@@ -277,6 +277,28 @@ public class ToDoListActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                reference.child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(ToDoListActivity.this, "Task Deleted Successfully", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            String err = task.getException().toString();
+                            Toast.makeText(ToDoListActivity.this, "Failed To Delete The Task" + err, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 }
