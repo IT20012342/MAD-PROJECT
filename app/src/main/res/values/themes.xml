@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
+
     <style name="Theme.TeacherApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -27,4 +28,10 @@
     <style name="Theme.TeacherApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TeacherApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Progressbar" >
+
+        <item name="colorSecondary">@color/lightred</item>
+
+    </style>
 </resources>
