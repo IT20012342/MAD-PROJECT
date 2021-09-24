@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif"
         android:padding="10dp"
-        android:text="@string/add_new_class"
+        android:text="@string/update_class"
         android:textColor="#000"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -235,7 +235,7 @@
                 android:layout_marginEnd="30dp"
                 android:backgroundTint="@color/colorButton"
                 android:textColor="@color/colorText"
-                android:text="@string/save"
+                android:text="@string/update"
                 android:textAllCaps="false"
                 android:textSize="17sp"
                 android:textStyle="bold" />
