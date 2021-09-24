@@ -247,7 +247,6 @@
 
                 android:layout_height="match_parent"
                 android:background="@color/colorTile"
-                android:layout_height="158dp"
                 android:onClick="VoiceCal">
 
 

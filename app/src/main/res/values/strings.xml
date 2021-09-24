@@ -97,7 +97,11 @@
     <string name="enter_batch">Enter Batch</string>
     <string name="batch">Batch</string>
     <string name="time">Time</string>
-
+    <string name="analyze">Analyze</string>
+    <string name="attendence">Attendence</string>
+    <string name="editx">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="update_class">Update Class</string>
 
 
 </resources>

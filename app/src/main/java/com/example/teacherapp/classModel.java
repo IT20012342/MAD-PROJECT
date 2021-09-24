@@ -1,5 +1,10 @@
 package com.example.teacherapp;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class classModel {
 
     private String name;
@@ -63,5 +68,17 @@ public class classModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name",name);
+        result.put("description",description);
+        result.put("batch",batch);
+        result.put("time",time);
+        //result.put("id",id);
+
+        return result;
     }
 }

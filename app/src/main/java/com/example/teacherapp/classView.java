@@ -1,44 +1,40 @@
 package com.example.teacherapp;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
-
+import java.text.DateFormat;
+import java.util.Date;
 
 
 public class classView extends AppCompatActivity {
@@ -63,6 +59,11 @@ public class classView extends AppCompatActivity {
 
     private ActionBar actionBar;
 
+    // For the update task
+    private String key = "";
+    private String updateName;
+    private String updateDesc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,21 +75,34 @@ public class classView extends AppCompatActivity {
         if (getSupportActionBar() != null) {     // calling the action bar
             ActionBar actionBar = getSupportActionBar();
 
+
             // Customize the back button
             actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24);
-            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("blue"));
+            ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.purple_500));
             actionBar.setBackgroundDrawable(colorDrawable);
 
             // showing the back button in action bar
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        fetchData();
+
+        createClass();
+
+
+
+    }
+
+
+    private void fetchData() {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         if (mUser != null) {
             onlineUserID = mUser.getUid();
         }
         reference = FirebaseDatabase.getInstance().getReference().child("classes").child(onlineUserID);
+;
+
         recyclerView = findViewById(R.id.recyclerClass);
 
         // To display the Recycler view linearly
@@ -106,28 +120,12 @@ public class classView extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-   /*     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(classView.this, "Class Description", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }); */
+
+    }
 
 
+
+    private void createClass() {
         saveloader = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -222,8 +220,8 @@ public class classView extends AppCompatActivity {
             }
         });
 
-
     }
+
 
 
     //back button
@@ -233,8 +231,6 @@ public class classView extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-
 
     // Function to tell the app to start getting
     // data from database on starting of the activity
@@ -250,10 +246,7 @@ public class classView extends AppCompatActivity {
     {
         super.onStop();
         adapter.stopListening();
-    }
-
-
-
+    };
 
 }
 
