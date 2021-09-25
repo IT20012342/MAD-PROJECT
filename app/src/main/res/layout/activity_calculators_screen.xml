@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".CalculatorsScreen">
+    tools:context=".CalculatorsScreen"
+    android:gravity="center_horizontal">
 
   <androidx.cardview.widget.CardView
       android:layout_width="180dp"
@@ -18,12 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="165dp"
         android:background="@color/colorTile"
-        android:onClick="goToClass"
         android:radius="30dp">
 
 
       <ImageView
-          android:id="@+id/x"
+
+          android:id="@+id/voicecal"
           android:layout_width="102dp"
           android:layout_height="94dp"
           android:layout_alignParentStart="true"
@@ -36,18 +37,19 @@
           app:srcCompat="@drawable/gpacalc" />
 
       <TextView
-          android:id="@+id/descx"
-          android:layout_width="78dp"
-          android:layout_height="19dp"
-          android:layout_below="@+id/imageView"
+          android:id="@+id/desc1"
+          android:layout_width="109dp"
+          android:layout_height="22dp"
+          android:layout_below="@+id/voicecal"
           android:layout_alignParentStart="true"
           android:layout_alignParentEnd="true"
           android:layout_alignParentBottom="true"
-          android:layout_marginStart="47dp"
-          android:layout_marginTop="3dp"
-          android:layout_marginEnd="55dp"
-          android:layout_marginBottom="21dp"
-          android:text="@string/attendance"
+          android:layout_marginStart="33dp"
+          android:layout_marginTop="6dp"
+          android:layout_marginEnd="38dp"
+          android:layout_marginBottom="22dp"
+          android:gravity="center"
+          android:text="Voice Calculator"
           android:textColor="@color/colorTileText"
           android:textStyle="bold" />
 
@@ -64,12 +66,12 @@
         android:layout_width="match_parent"
         android:layout_height="165dp"
         android:background="@color/colorTile"
-        android:onClick="goToClass"
         android:radius="30dp">
 
 
       <ImageView
-          android:id="@+id/zzzz"
+
+          android:id="@+id/gpaii"
           android:layout_width="102dp"
           android:layout_height="94dp"
           android:layout_alignParentStart="true"
@@ -79,21 +81,22 @@
           android:layout_marginTop="21dp"
           android:layout_marginEnd="45dp"
           android:contentDescription="@string/todo"
-          app:srcCompat="@drawable/gpacalc" />
+          app:srcCompat="@drawable/gpacalicon" />
 
       <TextView
-          android:id="@+id/desc"
-          android:layout_width="78dp"
-          android:layout_height="19dp"
-          android:layout_below="@+id/imageView"
+          android:id="@+id/desc2"
+          android:layout_width="111dp"
+          android:layout_height="27dp"
+          android:layout_below="@+id/gpaii"
           android:layout_alignParentStart="true"
           android:layout_alignParentEnd="true"
           android:layout_alignParentBottom="true"
-          android:layout_marginStart="47dp"
-          android:layout_marginTop="3dp"
-          android:layout_marginEnd="55dp"
-          android:layout_marginBottom="21dp"
-          android:text="@string/attendance"
+          android:layout_marginStart="34dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="35dp"
+          android:layout_marginBottom="18dp"
+          android:gravity="center"
+          android:text="GPA Calculator"
           android:textColor="@color/colorTileText"
           android:textStyle="bold" />
 
