@@ -1,9 +1,11 @@
 package com.example.teacherapp;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class classModel {
 
@@ -80,5 +82,36 @@ public class classModel {
         //result.put("id",id);
 
         return result;
+    }
+}
+
+class passModel{
+    private static classModel model;
+    private static DatabaseReference reference;
+    private static TreeMap<String, Object> arr;
+
+    public passModel(classModel m, DatabaseReference reference){
+         model = m;
+         this.reference = reference;
+         this.arr = null;
+    }
+
+    public static void setList(TreeMap<String, Object> list){
+        arr = list;
+    }
+
+    public static classModel getModel(){
+        if(model.getName()==null){
+            return null;
+        }
+        return model;
+    }
+
+    public static DatabaseReference getReference() {
+        return reference;
+    }
+
+    public static TreeMap<String, Object> getList(){
+        return arr;
     }
 }

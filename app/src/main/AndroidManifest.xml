@@ -27,6 +27,11 @@
             android:label="Classes"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
+            android:name=".Attendance"
+            android:exported="true"
+            android:label="ClassName"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
             android:name=".ResetPasswordActivity"
             android:exported="true" />
         <activity

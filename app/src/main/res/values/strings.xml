@@ -90,7 +90,6 @@
     <string name="datex">Date</string>
     <string name="edit">View Student List</string>
     <string name="view_student_list">View Student List</string>
-    <string name="add_new_student">Add New Student</string>
     <string name="main_title">Main Title</string>
     <string name="studentName">Student Name</string>
     <string name="Mobile">Mobile Number</string>
@@ -101,8 +100,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-
     <string name="add_new_class">Add New Class</string>
     <string name="enter_class_name">Enter Class Name</string>
     <string name="enter_descsription">Enter Descsription</string>
@@ -114,5 +111,13 @@
     <string name="editx">Edit</string>
     <string name="delete">Delete</string>
     <string name="update_class">Update Class</string>
+    <string name="add_student">Add Student</string>
+    <string name="add_new_student">Add New Student</string>
+    <string name="student_name">Name</string>
+    <string name="enter_student_name">Enter Student Name</string>
+    <string name="student_id">Student ID</string>
+    <string name="enter_student_id">Enter Student ID</string>
+    <string name="submit">Submit</string>
+    <string name="input_date">Input Date</string>
 
 </resources>
