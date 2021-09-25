@@ -25,6 +25,10 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="ActionBarTheme" parent="Theme.TeacherApp">
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+    </style>
+
     <style name="Theme.TeacherApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TeacherApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

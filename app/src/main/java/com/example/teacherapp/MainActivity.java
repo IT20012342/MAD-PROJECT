@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     //ImageView cal;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    ImageView notesicon,gpaicon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        notesicon = findViewById(R.id.imageView5);
+        gpaicon = findViewById(R.id.imageView7);
+
+        notesicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
 

@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.teacherapp.MainActivity;
 import com.example.teacherapp.Model.Notes;
+import com.example.teacherapp.NotesActivity;
 import com.example.teacherapp.R;
 import com.example.teacherapp.ViewModel.NotesViewModel;
 import com.example.teacherapp.databinding.ActivityInsertNoteBinding;
@@ -24,12 +28,23 @@ public class InsertNoteActivity extends AppCompatActivity {
     String title,subtitle,description;
     NotesViewModel notesViewModel;
     String priority= "1";
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding= ActivityInsertNoteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Back Button Function
+        imageView = findViewById(R.id.notesback);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InsertNoteActivity.this, NotesActivity.class);
+                startActivity(intent);
+            }
+        });
 
         notesViewModel = ViewModelProviders.of(this).get(NotesViewModel.class);
 

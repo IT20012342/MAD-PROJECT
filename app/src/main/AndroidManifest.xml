@@ -3,6 +3,7 @@
     package="com.example.teacherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -12,20 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/HiddenTitleTheme">
         <activity
+            android:name=".FingerprintAuth"
+            android:exported="true" />
+        <activity
             android:name=".Activity.SplashScreen"
             android:exported="true" />
         <activity
             android:name=".Activity.InsertNoteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/ActionBarTheme" />
         <activity
             android:name=".Activity.UpdateNotesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/ActionBarTheme" />
         <activity
             android:name=".NotesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/ActionBarTheme" />
         <activity
             android:name=".GPAcal"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/ActionBarTheme" />
         <activity
             android:name=".VoiceCal"
             android:exported="true" />

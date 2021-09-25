@@ -5,17 +5,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.teacherapp.Model.Notes;
+import com.example.teacherapp.NotesActivity;
 import com.example.teacherapp.R;
 import com.example.teacherapp.ViewModel.NotesViewModel;
 import com.example.teacherapp.databinding.ActivityUpdateNotesBinding;
@@ -30,12 +33,24 @@ public class UpdateNotesActivity extends AppCompatActivity {
     String priority="1";
     String  stitle, ssubtitle, sdescription, spriority;
     int iid;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding= ActivityUpdateNotesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Back Button Function
+        imageView = findViewById(R.id.notesback);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateNotesActivity.this, NotesActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         iid = getIntent().getIntExtra("id",0);

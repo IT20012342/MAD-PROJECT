@@ -4,24 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/delete_indicator_shape.xml" value="0.18888888888888888" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/edit_text_bg.xml" value="0.18425925925925926" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/gradientbackground.xml" value="0.1638888888888889" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.18888888888888888" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.18888888888888888" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.18888888888888888" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/red_shape.xml" value="0.18888888888888888" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/tile_shape.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_biometric_auth.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_create_note.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_gpacal.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_fingerprint_auth.xml" value="0.25" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_gpacal.xml" value="0.25" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_insert_note.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_notes.xml" value="0.25" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_secret.xml" value="0.165625" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_update_notes.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_voice_cal.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/content_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/content_main.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/delete_bottom_shape.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/fragment_home.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/item_notes.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/notes_layout.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/spinner_layout_gpa.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/menu/deletenote_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/menu/menu.xml" value="0.4287109375" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/menu/search_notes.xml" value="0.1796875" />

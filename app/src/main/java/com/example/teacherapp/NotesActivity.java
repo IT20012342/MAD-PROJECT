@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ public class NotesActivity extends AppCompatActivity {
 
     TextView nofilter, hightolow, lowtohigh;
     List<Notes> filternotesallList;
+    ImageView imageView;
 
 
     @Override
@@ -43,6 +45,16 @@ public class NotesActivity extends AppCompatActivity {
 
         newNotesBtn = findViewById(R.id.newNotesBtn);
         notesRecyclerview = findViewById(R.id.notesRecyclerview);
+
+        //Back Button Function
+        imageView = findViewById(R.id.notesback);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotesActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         nofilter = findViewById(R.id.noFilter);
         hightolow = findViewById(R.id.hightolow);
