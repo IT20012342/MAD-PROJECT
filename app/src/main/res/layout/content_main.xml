@@ -18,7 +18,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/mobile_navigation" />
+        app:navGraph="@navigation/mobile_navigation"
+        android:layout_margin="10dp"
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -45,20 +47,22 @@
                 android:onClick="goToClass">
 
 
+
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="102dp"
-                    android:layout_height="94dp"
+                    android:layout_width="96dp"
+                    android:layout_height="70dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="33dp"
+                    android:layout_marginStart="38dp"
                     android:layout_marginTop="21dp"
-                    android:layout_marginEnd="45dp"
+                    android:layout_marginEnd="36dp"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/attendance" />
 
                 <TextView
+
                     android:id="@+id/desc"
                     android:layout_width="78dp"
                     android:layout_height="19dp"
@@ -66,10 +70,10 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="47dp"
+                    android:layout_marginStart="43dp"
                     android:layout_marginTop="3dp"
-                    android:layout_marginEnd="55dp"
-                    android:layout_marginBottom="21dp"
+                    android:layout_marginEnd="44dp"
+                    android:layout_marginBottom="27dp"
                     android:text="@string/attendance"
                     android:textColor="@color/colorTileText"
                     android:textStyle="bold" />
@@ -78,12 +82,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardElevation="10dp">
 
             <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorTile">
@@ -92,29 +97,32 @@
                     android:id="@+id/btn_sheduler"
                     android:layout_width="101dp"
                     android:layout_height="98dp"
+
                     android:layout_above="@+id/textView3"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="49dp"
-                    android:layout_marginTop="21dp"
-                    android:layout_marginEnd="39dp"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/scheduleicon" />
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="62dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="66dp"
-                    android:layout_marginEnd="61dp"
-                    android:layout_marginBottom="26dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/schedule"
                     android:textColor="@color/colorTileText"
+
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -142,6 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorTile">
+
 
                 <ImageView
                     android:id="@+id/todoicon"
@@ -177,45 +186,48 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="189dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardElevation="10dp">
 
             <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorTile">
 
+
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="94dp"
-                    android:layout_height="89dp"
+                    android:layout_width="92dp"
+                    android:layout_height="85dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="44dp"
+                    android:layout_marginStart="42dp"
                     android:layout_marginTop="19dp"
                     android:layout_marginEnd="42dp"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/noteicon"
+                    app:srcCompat="@drawable/notes"
                     tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="41dp"
-                    android:layout_height="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView5"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="83dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="65dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/notes"
                     android:textStyle="bold"
                     android:textColor="@color/colorTileText"/>
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -237,8 +249,8 @@
         app:layout_constraintVertical_bias="0.083">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="177dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardElevation="10dp">
 
@@ -279,12 +291,13 @@
                     android:text="@string/calculators"
                     android:textStyle="bold"
                     android:textColor="@color/colorTileText"/>
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardElevation="10dp">
 
@@ -292,6 +305,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorTile">
+
 
                 <ImageView
                     android:id="@+id/qricon"

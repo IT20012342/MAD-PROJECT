@@ -10,8 +10,17 @@
     <color name="colorPrimary">#00656f</color>
     <color name="colorPrimaryDark">#002d44</color>
     <color name="colorAccent">#ffffff</color>
+
+
+    <color name="red">#cc0000</color>
+    <color name="lightred">#ff5050</color>
+    <color name="yellow">#ffd480</color>
+    <color name="green">#85e085</color>
+    <color name="pink">#ff6666</color>
+    <color name="grey">#666666</color>
     <color name="colorButton">#550080</color>
     <color name="colorTile">#0d1a26</color>
     <color name="colorTileText">#fff</color>
     <color name="colorText">#fff</color>
+
 </resources>
