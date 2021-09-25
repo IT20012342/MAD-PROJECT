@@ -17,7 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/HiddenTitleTheme">
         <activity
-
+            android:name=".ShedulerScreen"
+            android:exported="true" />
+        <activity
+            android:name=".ShedulerActivity"
+            android:exported="true"/>
+        <activity
             android:name=".FingerprintAuth"
             android:exported="true" />
         <activity
@@ -40,6 +45,7 @@
             android:exported="true"
             android:theme="@style/ActionBarTheme" />
 
+        <activity
             android:name=".ScanQRActivity"
             android:exported="true" />
         <activity
@@ -91,6 +97,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".AlarmReciever"
+            android:exported="true"
+            android:enabled="true">
+
+        </receiver>
     </application>
 
 </manifest>

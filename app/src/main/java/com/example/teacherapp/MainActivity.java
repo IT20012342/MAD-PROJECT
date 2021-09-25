@@ -124,10 +124,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public  void gotoShedule(View view){
+        Intent intent = new Intent(this, ShedulerScreen.class);
+        startActivity(intent);
+    }
+
     public void goToClass(View view) {
         Toast.makeText(MainActivity.this, "Loading classes...", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, classView.class);
         startActivity(intent);
     }
+
 
 }
