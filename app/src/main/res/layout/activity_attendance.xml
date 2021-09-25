@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Attendance">
+    tools:context=".Attendance"
+    android:background="@color/row">
 
 
     <EditText
@@ -17,7 +18,8 @@
         android:inputType="date"
         android:clickable="false"
         android:cursorVisible="false"
-        android:focusable="false" />
+        android:focusable="false"
+        android:textColor="@color/colorText"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -38,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_margin="20dp"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="@color/colorButtonNew"
             android:text="@string/submit"
             android:textColor="@color/colorText"/>
 
