@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -29,148 +31,81 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 
-class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.classViewholder> {
+class studentAdapter extends FirebaseRecyclerAdapter<studentModel, studentAdapter.studentViewholder> {
 
     private Context context;
+    //ArrayList<String> arr = new ArrayList<>();
+    private TreeMap<String,Object> list = new TreeMap<>();
 
 
-    private FirebaseUser mUser;
-    private String onlineUserID;
-    private DatabaseReference reference;
 
-
-    public classAdapter(@NonNull FirebaseRecyclerOptions<classModel> options, ArrayList<classModel> cArrayList, Context context) {
+    public studentAdapter(@NonNull FirebaseRecyclerOptions<studentModel> options, ArrayList<String> al) {
 
         super(options);
-        this.context = context;
+        //arr = al;
     }
 
-    public classAdapter(FirebaseRecyclerOptions<classModel> options) {
+    public studentAdapter(FirebaseRecyclerOptions<studentModel> options, Context c) {
         super(options);
+        this.context = c;
     }
 
-
-    // Function to bind the view in Card view(here
-    // "person.xml") iwth data ins
-    // model class(here "person.class")
     @Override
-    protected void onBindViewHolder(@NonNull classViewholder holder, int position, @NonNull classModel model) {
+    protected void onBindViewHolder(@NonNull studentViewholder holder, int position, @NonNull studentModel model) {
 
         holder.name.setText(model.getName());
-
-        //holder.name.setText("testingBn");
-
-        holder.description.setText(model.getDescription());
-        //holder.description.setText("Hello World!");
-
-        //holder.batch.setText(model.getBatch());
-        //holder.time.setText(model.getTime());
-
-        //cArrayList.add(model);
-
-        //FirebaseValues
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        onlineUserID = null;
-        if (mUser != null) {
-            onlineUserID = mUser.getUid();
-        } else {
-            Toast.makeText(context, "Authentication Error", Toast.LENGTH_LONG).show();
-            return;
-        }
-        reference = FirebaseDatabase.getInstance().getReference().child("classes").child(onlineUserID);
+        holder.sid.setText(model.getSid());
 
 
-        holder.dotClass.setOnClickListener(new View.OnClickListener() {
+        //holder.check.setText(arr.get(position));
+
+        holder.check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-
-                //creating a popup menu
-                PopupMenu popup = new PopupMenu(holder.dotClass.getContext(), holder.dotClass);
-                //inflating menu from xml resource
-                popup.inflate(R.menu.popup_menu_class);
-                //adding click listener
-                Context context = holder.dotClass.getContext();
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.menu1:
-                                Toast.makeText(context, "Hello" + model.getName(), Toast.LENGTH_LONG).show();
-                                return true;
-                            case R.id.menu2:
-                                //handle menu2 click
-                                return true;
-                            case R.id.updateClass:
-                                updateClass(view, context, model);
-                                return true;
-                            case R.id.deleteClass:
-                                deleteClass(context, model);
-                                return true;
-                            default:
-                                return false;
-                        }
-                    }
-                });
-                //displaying the popup
-                popup.show();
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if ( b ) {
+                    // perform logic
+                    //notify_tv.setVisibility(View.VISIBLE);
+                    list.put("S"+(holder.getAdapterPosition()+1),model.getName());
+                }
+                else {
+                    list.remove("S"+(holder.getAdapterPosition()+1));
+                }
             }
-
         });
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        passModel.setList(list);
 
-                //adding click listener
-                Context context = holder.dotClass.getContext();
 
-                Toast.makeText(context,"Working",Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(context, Attendance.class);
-                passModel m = new passModel(model,reference);
-                context.startActivity(intent);
-
-            }
-
-        });
     }
 
-
-    // Function to tell the class about the Card view (here
-    // "person.xml")in
-    // which the data will be shown
     @NonNull
     @Override
-    public classViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
-        return new classAdapter.classViewholder(view);
+    public studentViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_student, parent, false);
+        return new studentAdapter.studentViewholder(view);
     }
 
-    // Sub Class to create references of the views in Crad
-    // view (here "person.xml")
-    static class classViewholder extends RecyclerView.ViewHolder {
-        public TextView name, description, batch, time;
-        View viewClass;
-        public TextView dotClass;
 
-        public classViewholder(@NonNull View itemView) {
+    static class studentViewholder extends RecyclerView.ViewHolder {
+        public TextView name, sid;
+        View viewClass;
+        CheckBox check;
+
+        public studentViewholder(@NonNull View itemView) {
             super(itemView);
             viewClass = itemView;
 
             name = itemView.findViewById(R.id.name);
-            description = itemView.findViewById(R.id.desc);
-            //batch = itemView.findViewById(R.id.batchRow);
-            //time = itemView.findViewById(R.id.timeRow);
-            dotClass = viewClass.findViewById(R.id.dotClass);
-
-
+            sid = itemView.findViewById(R.id.sid);
+            check = itemView.findViewById(R.id.attendance);
         }
     }
 
-
+    /*
     private void updateClass(View view, Context context, classModel model) {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(context);
@@ -251,13 +186,13 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
                 Toast.makeText(context, "Class Deleted Successfully", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error in deletion ", Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, "Error in deletion ", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         });
-    }
+    } */
 
 
 }

@@ -49,7 +49,7 @@ public class classView extends AppCompatActivity {
     private ProgressDialog saveloader;
 
 
-    ListView listView;
+    //ListView listView;
     //String mTitle[] = {"Physics", "Maths", "Software Development", "History", "International law"};
     //String mDescription[] = {"Physics Description", "Maths Description", "IT Description", "sad Description", "Law Description"};
 
@@ -88,8 +88,6 @@ public class classView extends AppCompatActivity {
         fetchData();
 
         createClass();
-
-
 
     }
 
@@ -156,7 +154,7 @@ public class classView extends AppCompatActivity {
                 EditText batch = myView.findViewById(R.id.batch);
                 EditText time = myView.findViewById(R.id.timeInput);
                 Button save = myView.findViewById(R.id.saveClass);
-                Button cancel = myView.findViewById(R.id.addClass);
+                Button cancel = myView.findViewById(R.id.cancelBtn);
 
                 //cancel button
                 cancel.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +180,7 @@ public class classView extends AppCompatActivity {
                             nDescription = "Auto Generated Description!";
                         }
                         if (TextUtils.isEmpty(nBatch)) {
-                            int x = (int) Math.random() * 1000;
+                            int x = (int) (Math.random() * 1000);
                             nBatch = Integer.toString(x);
                         }
                         if (TextUtils.isEmpty(nTime)) {
