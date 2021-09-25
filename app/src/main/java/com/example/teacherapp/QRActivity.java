@@ -23,7 +23,7 @@ public class QRActivity extends AppCompatActivity {
     private Button camera;
     private Button generate;
     private Button scan;
-    ImageView myImage;
+    ImageView myImage, backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,16 @@ public class QRActivity extends AppCompatActivity {
         generate = findViewById(R.id.generate);
         scan = findViewById(R.id.scanqr);
         myImage = findViewById(R.id.myImage);
-
+        backBtn = findViewById(R.id.todoback);
         myImage.setAlpha(0.5f);
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QRActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         camera.setOnClickListener(new View.OnClickListener() {

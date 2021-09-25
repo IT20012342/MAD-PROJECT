@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    ImageView notesicon,gpaicon;
+    ImageView notesicon, gpaicon, todoIcon, qrIcon;
 
     ImageView todoicon, qricon;
 
@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-
 
         todoicon = findViewById(R.id.todoicon);
         qricon = findViewById(R.id.qricon);
@@ -104,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
 
 
