@@ -89,6 +89,7 @@ class passModel{
     private static classModel model;
     private static DatabaseReference reference;
     private static TreeMap<String, Object> arr;
+    public static int[] plots = new int[]{4, 1, 2, 3, 4, 5, 6, 7, 2, 4, 5, 1,12};
 
     public passModel(classModel m, DatabaseReference reference){
          model = m;
