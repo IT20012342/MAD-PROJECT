@@ -41,7 +41,7 @@
                 android:radius="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#383838"
+                android:background="@color/colorTile"
                 android:onClick="goToClass">
 
 
@@ -101,7 +101,8 @@
                     android:layout_marginEnd="39dp"
                     android:layout_marginBottom="11dp"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/scheduleicon" />
+                    app:srcCompat="@drawable/scheduleicon"
+                    android:onClick="gotoShedule"/>
 
                 <TextView
                     android:id="@+id/textView3"
@@ -189,8 +190,8 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="94dp"
-                    android:layout_height="89dp"
+                    android:layout_width="90dp"
+                    android:layout_height="85dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
@@ -198,7 +199,7 @@
                     android:layout_marginTop="19dp"
                     android:layout_marginEnd="42dp"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/noteicon"
+                    app:srcCompat="@drawable/notes"
                     tools:ignore="ImageContrastCheck" />
 
                 <TextView
@@ -209,13 +210,13 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="83dp"
+                    android:layout_marginStart="73dp"
                     android:layout_marginTop="14dp"
                     android:layout_marginEnd="65dp"
                     android:layout_marginBottom="20dp"
                     android:text="@string/notes"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorTileText"/>
+                    android:textColor="@color/colorTileText"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -295,13 +296,13 @@
 
                 <ImageView
                     android:id="@+id/qricon"
-                    android:layout_width="127dp"
-                    android:layout_height="90dp"
+                    android:layout_width="137dp"
+                    android:layout_height="109dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="49dp"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="13dp"
                     android:layout_marginEnd="37dp"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/qrmain"
@@ -311,12 +312,12 @@
                     android:id="@+id/textView9"
                     android:layout_width="71dp"
                     android:layout_height="19dp"
-                    android:layout_below="@+id/imageView8"
+                    android:layout_below="@+id/qricon"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="60dp"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="49dp"
                     android:layout_marginBottom="10dp"
                     android:text="QR Codes"

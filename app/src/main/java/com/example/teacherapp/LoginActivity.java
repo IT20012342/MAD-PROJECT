@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 else {
-                    loader.setMessage("Login in process...");
+                    loader.setMessage("Logging in ...");
                     loader.setCanceledOnTouchOutside(false);
 
                     mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

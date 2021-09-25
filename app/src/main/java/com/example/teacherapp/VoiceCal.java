@@ -10,6 +10,7 @@ import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class VoiceCal extends AppCompatActivity {
     private boolean lastDot;
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    ImageView actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,21 @@ public class VoiceCal extends AppCompatActivity {
 
         btnSpeak = findViewById(R.id.btnSpeak);
         txtScreen = findViewById(R.id.txtScreen);
+        actionBar = findViewById(R.id.actionBar);
 
         //find and set onclick listener to numeric buttons
         setNumericOnClickListener();
 
         //find and set onCLickListener to the operators, equal btn, decimal point btn
         setOperatorOnClickListener();
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VoiceCal.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

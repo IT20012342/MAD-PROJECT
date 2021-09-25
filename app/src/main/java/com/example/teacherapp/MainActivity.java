@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    ImageView notesicon, gpaicon, todoIcon, qrIcon;
+
     ImageView todoicon, qricon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,19 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+        notesicon = findViewById(R.id.imageView5);
+        gpaicon = findViewById(R.id.imageView7);
+
+        notesicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         todoicon = findViewById(R.id.todoicon);
         qricon = findViewById(R.id.qricon);
 
@@ -86,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -105,10 +124,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public  void gotoShedule(View view){
+        Intent intent = new Intent(this, ShedulerScreen.class);
+        startActivity(intent);
+    }
+
     public void goToClass(View view) {
         Toast.makeText(MainActivity.this, "Loading classes...", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, classView.class);
         startActivity(intent);
     }
+
 
 }
