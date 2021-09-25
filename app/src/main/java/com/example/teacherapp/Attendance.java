@@ -82,7 +82,7 @@ public class Attendance extends AppCompatActivity {
         }
 
 
-        Toast.makeText(this, "Loading" + model.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Loading " + model.getName(), Toast.LENGTH_SHORT).show();
 
         String pid = passModel.getModel().getId();
         assert pid != null;

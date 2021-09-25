@@ -10,7 +10,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/row">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerClass"
@@ -23,8 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="20dp"
-            android:backgroundTint="@color/colorButton"
-            android:src="@drawable/ic_baseline_add_24"
+            android:backgroundTint="@color/colorButtonNew"
+            android:src="@drawable/white_add"
             tools:ignore="SpeakableTextPresentCheck" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
