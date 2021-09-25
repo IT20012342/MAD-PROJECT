@@ -93,7 +93,8 @@
                     android:layout_marginEnd="39dp"
                     android:layout_marginBottom="11dp"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/scheduleicon" />
+                    app:srcCompat="@drawable/scheduleicon"
+                    android:onClick="gotoShedule"/>
 
                 <TextView
                     android:id="@+id/textView3"

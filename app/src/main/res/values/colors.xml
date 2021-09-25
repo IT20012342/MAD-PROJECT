@@ -11,4 +11,6 @@
     <color name="colorPrimaryDark">#002d44</color>
     <color name="colorAccent">#ffffff</color>
     <color name="colorButton">#1daee5</color>
+    <color name="green">@android:color/holo_green_dark</color>
+
 </resources>

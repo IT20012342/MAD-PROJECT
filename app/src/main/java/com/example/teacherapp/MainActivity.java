@@ -74,4 +74,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, VoiceCal.class);
         startActivity(intent);
     }
+
+    public  void gotoShedule(View view){
+        Intent intent = new Intent(this, ShedulerScreen.class);
+        startActivity(intent);
+    }
 }
