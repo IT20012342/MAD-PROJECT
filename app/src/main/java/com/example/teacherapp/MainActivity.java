@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    ImageView notesicon, gpaicon, todoIcon, qrIcon;
+    ImageView notesicon, gpaicon;
 
     ImageView todoicon, qricon;
 
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         notesicon = findViewById(R.id.imageView5);
         gpaicon = findViewById(R.id.imageView7);
+
 
         notesicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoCal(View view){
-        Intent intent = new Intent(this, VoiceCal.class);
+        Intent intent = new Intent(this, CalculatorsScreen.class);
         startActivity(intent);
     }
 

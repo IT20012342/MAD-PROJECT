@@ -97,9 +97,6 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.menu1:
-                                Toast.makeText(context, "Hello" + model.getName(), Toast.LENGTH_LONG).show();
-                                return true;
                             case R.id.menu2:
                                 //handle menu2 click
                                 return true;

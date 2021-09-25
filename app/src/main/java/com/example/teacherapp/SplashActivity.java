@@ -16,8 +16,8 @@ public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH = 3300;
 
     Animation topAnim, bottomAnim;
-    ImageView imageView;
-    TextView textView;
+    ImageView imageView,iclass;
+    TextView textView,dev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,12 @@ public class SplashActivity extends AppCompatActivity {
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
         imageView = findViewById(R.id.imageViewSp);
+        iclass = findViewById(R.id.iclassim);
         textView = findViewById(R.id.textsp);
+        dev = findViewById(R.id.devtxt);
 
         imageView.setAnimation(topAnim);
+        iclass.setAnimation(topAnim);
         textView.setAnimation(bottomAnim);
 
         new Handler().postDelayed(() -> {
