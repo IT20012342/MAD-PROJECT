@@ -1,33 +1,42 @@
 package com.example.teacherapp;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teacherapp.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ImageView cal;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
     ImageView notesicon,gpaicon;
+
+    ImageView todoicon, qricon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //cal = findViewById(R.id.imageView7);
 
         super.onCreate(savedInstanceState);
 
@@ -35,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+        /*
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        */
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -53,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
 
         notesicon = findViewById(R.id.imageView5);
         gpaicon = findViewById(R.id.imageView7);
@@ -69,17 +82,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-        cal.setOnClickListener(new View.OnClickListener() {
+
+        todoicon = findViewById(R.id.todoicon);
+        qricon = findViewById(R.id.qricon);
+
+        todoicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,VoiceCal.class);
+                Intent intent = new Intent(MainActivity.this, ToDoListActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        qricon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRActivity.class);
                 startActivity(intent);
             }
         });
-    }*/
+
+    }
+
 
 
     @Override
@@ -95,4 +120,16 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void gotoCal(View view){
+        Intent intent = new Intent(this, VoiceCal.class);
+        startActivity(intent);
+    }
+
+    public void goToClass(View view) {
+        Toast.makeText(MainActivity.this, "Loading classes...", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, classView.class);
+        startActivity(intent);
+    }
+
 }

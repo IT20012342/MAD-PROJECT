@@ -3,7 +3,11 @@
     package="com.example.teacherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <application
         android:allowBackup="true"
@@ -13,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/HiddenTitleTheme">
         <activity
+
             android:name=".FingerprintAuth"
             android:exported="true" />
         <activity
@@ -34,6 +39,32 @@
             android:name=".GPAcal"
             android:exported="true"
             android:theme="@style/ActionBarTheme" />
+
+            android:name=".ScanQRActivity"
+            android:exported="true" />
+        <activity
+            android:name=".GenerateQRCode"
+            android:exported="true" />
+        <activity
+            android:name=".QRActivity"
+            android:exported="true" />
+        <activity
+            android:name=".classView"
+            android:exported="true"
+            android:label="Classes"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".Attendance"
+            android:exported="true"
+            android:label="ClassName"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ToDoListActivity"
+            android:exported="true" />
+
         <activity
             android:name=".VoiceCal"
             android:exported="true" />
@@ -42,6 +73,9 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ShedulerActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

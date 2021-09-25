@@ -22,6 +22,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -35,7 +36,9 @@ public class HomeFragment extends Fragment {
                 textView.setText("");
             }
         });
+
         return root;
+
     }
 
     @Override
