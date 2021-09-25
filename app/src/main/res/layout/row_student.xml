@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Main Title"
-            android:textColor="#000"
+            android:textColor="@color/colorText"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="62dp"
             android:layout_gravity="right"
+            android:buttonTint="@color/colorButtonNew"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 

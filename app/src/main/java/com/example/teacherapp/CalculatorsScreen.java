@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.ImageView;
+
 
 public class CalculatorsScreen extends AppCompatActivity {
     ImageView gpai, vcal;
@@ -39,6 +41,7 @@ public class CalculatorsScreen extends AppCompatActivity {
 
 
     }
-
+    public void goToClass(View view) {
+    }
 
 }

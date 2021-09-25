@@ -23,6 +23,7 @@
 
 
       <ImageView
+
           android:id="@+id/voicecal"
           android:layout_width="102dp"
           android:layout_height="94dp"
@@ -69,6 +70,7 @@
 
 
       <ImageView
+
           android:id="@+id/gpaii"
           android:layout_width="102dp"
           android:layout_height="94dp"
