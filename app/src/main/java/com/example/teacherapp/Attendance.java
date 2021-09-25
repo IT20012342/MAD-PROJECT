@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,20 +27,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 
 public class Attendance extends AppCompatActivity {
 
@@ -122,6 +125,8 @@ public class Attendance extends AppCompatActivity {
                 addStudent();
                 return true;
             case R.id.analyze:
+                analyseAttendance();
+                startActivity(new Intent(this, LineGraph.class));
                 return true;
         }
 
@@ -129,6 +134,8 @@ public class Attendance extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -250,9 +257,6 @@ public class Attendance extends AppCompatActivity {
         adapter.stopListening();
     }
 
-    ;
-
-
     private void storeAttendance() {
 
         Button submit = findViewById(R.id.submitAttendance);
@@ -313,11 +317,11 @@ public class Attendance extends AppCompatActivity {
 
                     //creating node according to year and month
 
-                    referenceAttendance = referenceAttendance.child(model.getName()).child(date[3]).child(date[0]);
-                    String id = referenceAttendance.push().getKey();
+                    DatabaseReference newReferenceAttendance = referenceAttendance.child(model.getName()).child(date[3]).child(date[0]);
+                    String id = newReferenceAttendance.push().getKey();
 
 
-                    referenceAttendance.child(id).updateChildren(mapValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    newReferenceAttendance.child(id).updateChildren(mapValues).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
@@ -341,6 +345,51 @@ public class Attendance extends AppCompatActivity {
 
             }
         });
-
     }
+
+    private void analyseAttendance() {
+
+        String className = passModel.getModel().getName();
+        if(date == null){
+            date = DateFormat.getDateInstance().format(new Date()).split("\\s|,");
+        }
+        DatabaseReference ref = referenceAttendance.child(className).child(date[3]);
+
+        //Queue <String> months = new LinkedList <String>(Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"));  //"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
+        ArrayList <String> months = new ArrayList<>(Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"));
+
+
+        for(int i=0; i<12; i++){
+            //ref = ref.;
+            /*FirebaseRecyclerOptions<attendanceModel> options = new FirebaseRecyclerOptions.Builder<attendanceModel>()
+                    .setQuery(ref, attendanceModel.class)
+                    .build(); */
+            // Connecting object of required Adapter class to
+            // the Adapter class itself
+
+            ref.child(months.get(i)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        if(String.valueOf(task.getResult().getValue()) != null){
+                            //Toast.makeText(Attendance.this, String.valueOf(task.getResult().getValue()), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
+            });
+
+
+            //attendanceAdapter adapter = new attendanceAdapter(this);
+            // Connecting Adapter class with the Recycler view
+            //recyclerView.setAdapter(adapter);
+     }
+
+        //Toast.makeText(Attendance.this, months.toString(), Toast.LENGTH_SHORT).show();
+    }
+
 }

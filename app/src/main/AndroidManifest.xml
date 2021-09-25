@@ -32,6 +32,11 @@
             android:label="ClassName"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
+            android:name=".LineGraph"
+            android:exported="true"
+            android:label="ClassName"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+        <activity
             android:name=".ResetPasswordActivity"
             android:exported="true" />
         <activity
