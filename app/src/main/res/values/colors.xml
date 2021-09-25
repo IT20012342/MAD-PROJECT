@@ -10,8 +10,8 @@
     <color name="colorPrimary">#00656f</color>
     <color name="colorPrimaryDark">#002d44</color>
     <color name="colorAccent">#ffffff</color>
-    <color name="colorButton">#1daee5</color>
-    <color name="green">@android:color/holo_green_dark</color>
+    <color name="colorButton2">#1daee5</color>
+    <color name="green2">@android:color/holo_green_dark</color>
     <color name="red">#cc0000</color>
     <color name="lightred">#ff5050</color>
     <color name="yellow">#ffd480</color>
