@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu1"
+        android:orderInCategory="100"
+        android:title="@string/analyze"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu2"
+        android:orderInCategory="100"
+        android:title="@string/attendance"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/updateClass"
+        android:orderInCategory="100"
+        android:title="@string/editx"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/deleteClass"
+        android:orderInCategory="100"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+</menu>

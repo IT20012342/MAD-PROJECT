@@ -2,15 +2,16 @@ package com.example.teacherapp;
 
 public class User {
 
-    String email, mobile;
+    String email, mobile, id;
 
     public User() {
 
     }
 
-    public User(String email, String mobile) {
+    public User(String email, String mobile, String id) {
         this.email = email;
         this.mobile = mobile;
+        this.id = id;
     }
 
     public String getEmail() {
@@ -27,5 +28,13 @@ public class User {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

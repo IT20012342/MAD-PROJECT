@@ -1,27 +1,39 @@
 package com.example.teacherapp;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teacherapp.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    ImageView notesicon, gpaicon, todoIcon, qrIcon;
+
+    ImageView todoicon, qricon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+        /*
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
+        */
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -54,7 +66,44 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+        notesicon = findViewById(R.id.imageView5);
+        gpaicon = findViewById(R.id.imageView7);
+
+        notesicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        todoicon = findViewById(R.id.todoicon);
+        qricon = findViewById(R.id.qricon);
+
+        todoicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ToDoListActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        qricon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,8 +124,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public  void gotoShedule(View view){
         Intent intent = new Intent(this, ShedulerScreen.class);
         startActivity(intent);
     }
+
+    public void goToClass(View view) {
+        Toast.makeText(MainActivity.this, "Loading classes...", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, classView.class);
+        startActivity(intent);
+    }
+
+
 }

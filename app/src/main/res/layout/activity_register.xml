@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/loginbg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#145fff">
+        android:background="@color/purple_500">
 
         <ImageView
+            android:id="@+id/registerback"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="15dp"
@@ -26,7 +28,7 @@
         android:text="@string/sign_up"
         android:textStyle="bold"
         android:textSize="35sp"
-        android:textColor="#000"
+        android:textColor="@color/colorText"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         />
@@ -35,9 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/register_below_text"
-        android:textColor="#404040"
+        android:textColor="#e3e3e3"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -57,20 +59,20 @@
         android:hint="@string/email_hint_reg"
         android:inputType="textEmailAddress"
         android:padding="12dp"
-        android:textColor="#000"
-        android:textColorHint="#515151" />
+        android:textColor="#fff"
+        android:textColorHint="#e3e3e3" />
 
     <EditText
         android:id="@+id/RegistrationPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:inputType="textPassword"
         android:hint="@string/password_hint_reg"
         android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="10dp"
-        android:textColorHint="#515151"
+        android:textColorHint="#e3e3e3"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
@@ -83,11 +85,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:inputType="textPassword"
         android:hint="@string/mobile_hint_reg"
         android:drawablePadding="10dp"
-        android:textColorHint="#515151"
+        android:textColorHint="#e3e3e3"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
@@ -116,7 +118,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:textAlignment="center"
-        android:textColor="#001795"
+        android:textColor="@color/colorText"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="50dp"
