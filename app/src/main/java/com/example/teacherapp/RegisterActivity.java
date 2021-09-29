@@ -63,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (mUser != null) {
             onlineUserID = mUser.getUid();
         }
+
         reference = FirebaseDatabase.getInstance().getReference().child("user").child(onlineUserID);
 
         loader = new ProgressDialog(this);
@@ -165,4 +166,5 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
 }
