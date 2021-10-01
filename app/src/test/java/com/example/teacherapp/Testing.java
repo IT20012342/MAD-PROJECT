@@ -11,6 +11,7 @@ import java.util.Date;
 
 public class Testing {
     private EventRecyclerAdapter eventRecyclerAdapter;
+    private AverageCal averagecal;
 
     private Attendance attendance;
 
@@ -18,13 +19,16 @@ public class Testing {
     public void setUp(){
         eventRecyclerAdapter = new EventRecyclerAdapter();
     }
-
+  
+    @BeforeEach
+    public  void setup(){
+        averagecal = new AverageCal();
+    }
+  
     @BeforeEach
     public void setup(){
         attendance = new Attendance();
     }
-
-
 
     @Test
     public void testConvertStringToDate(){
@@ -38,7 +42,21 @@ public class Testing {
         assertEquals("07:00",Result);
     }
 
+    // IT20012342
+    @Test
+    public  void testTotal() {
+        int result = averagecal.getTotal(70,80,90);
+        assertEquals(240, result);
+    }
 
+    @Test
+    public  void testAverage() {
+        double result = averagecal.getAverage(70,80,90);
+        assertEquals(80.0, result);
+    }
+  
+  //IT20188054
+  
     @Test
     public void summaryCalculation_isCorrect() {
         Object ob = null;

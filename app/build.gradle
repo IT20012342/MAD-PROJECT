@@ -5,6 +5,10 @@ plugins {
 android {
     compileSdk 31
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId "com.example.teacherapp"
         minSdk 21
@@ -48,7 +52,6 @@ dependencies {
     //testImplementation 'junit:junit:4.13.2'
 
     implementation 'com.google.firebase:firebase-firestore:21.4.0'
-
 
     //testImplementation 'junit:junit:4.13.2'
 
