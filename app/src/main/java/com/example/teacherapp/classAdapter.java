@@ -2,7 +2,6 @@ package com.example.teacherapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,19 +96,21 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.menu2:
-                                //handle menu2 click
+                            case R.id.moreInfo:
+                                showMoreInfo(view, context, model);
                                 return true;
                             case R.id.updateClass:
                                 updateClass(view, context, model);
                                 return true;
                             case R.id.deleteClass:
                                 deleteClass(context, model);
+                                context.startActivity(new Intent(context,classView.class));
                                 return true;
                             default:
                                 return false;
                         }
                     }
+
                 });
                 //displaying the popup
                 popup.show();
@@ -137,7 +138,6 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
 
 
     // Function to tell the class about the Card view (here
-    // "person.xml")in
     // which the data will be shown
     @NonNull
     @Override
@@ -166,6 +166,44 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
 
         }
     }
+
+
+
+    private void showMoreInfo(View view, Context context, classModel model) {
+
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View myView = inflater.inflate(R.layout.more_info, null);
+        myDialog.setView(myView);
+
+        AlertDialog dialog = myDialog.create();
+        dialog.setCancelable(false);
+        dialog.show();
+
+        TextView name = myView.findViewById(R.id.name);
+        TextView description = myView.findViewById(R.id.desc);
+        TextView batch = myView.findViewById(R.id.batch);
+        TextView time = myView.findViewById(R.id.time);
+        Button close = myView.findViewById(R.id.closeBtn);
+
+        name.setText(model.getName());
+        description.setText(model.getDescription());
+        batch.setText("Batch: "+model.getBatch());
+        time.setText("Time: "+model.getTime());
+
+
+        //cancel button
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+
+    }
+
+
 
 
     private void updateClass(View view, Context context, classModel model) {
@@ -201,7 +239,7 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
             }
         });
 
-        //saveButton
+        //update Button
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,17 +247,16 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
                 String nDescription = description.getText().toString().trim();
                 String nBatch = batch.getText().toString().trim();
                 String nTime = time.getText().toString().trim();
-                //String id = reference.push().getKey();
 
-                String id = model.getId();
+                String id = model.getId();  //get the id of the class which we needs to edit
 
-                classModel updateClass = new classModel(nClass, nDescription, nBatch, nTime, id);
+                classModel updateClass = new classModel(nClass, nDescription, nBatch, nTime, id);  //set new values to the model class
 
                 assert id != null;
 
                 Map<String, Object> updateClassMap = updateClass.toMap();
 
-
+                //update class using firebase reference
                 reference.child(id).updateChildren(updateClassMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -245,6 +282,8 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
         reference.child(model.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+
+                deleteAttendance(model.getName());
                 Toast.makeText(context, "Class Deleted Successfully", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -253,6 +292,37 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
                         Toast.makeText(context, "Error in deletion ", Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
+        });
+    }
+
+    private void deleteAttendance(String name) {
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String onlineUserID = null;
+        if (mUser != null) {
+            onlineUserID = mUser.getUid();
+        } else {
+            //Toast.makeText(context, "Error Attendance authentication", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("attendance").child(onlineUserID)
+                .child(name);
+
+        ref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+               //Toast.makeText(context, "Class Deleted Successfully", Toast.LENGTH_LONG).show();
+
+                //context.startActivity(new Intent(classView.this,MainActivity.class));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //Toast.makeText(context, "Error in deletion ", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         });
     }
 
