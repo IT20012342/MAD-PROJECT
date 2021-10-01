@@ -34,6 +34,10 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         this.arrayList = arrayList;
     }
 
+    public EventRecyclerAdapter() {
+
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -118,7 +122,7 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         }
     }
 
-    private Date ConvertStringToDate(String eventDate){
+    public Date ConvertStringToDate(String eventDate){
         java.text.SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = null;
         try{
@@ -126,10 +130,11 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         }catch (ParseException e){
             e.printStackTrace();
         }
+        //Toast.makeText(context, date.toString(), Toast.LENGTH_SHORT).show();
         return date;
     }
 
-    private Date ConvertStringToTime(String eventDate){
+    public Date ConvertStringToTime(String eventDate){
         java.text.SimpleDateFormat format = new SimpleDateFormat("kk:mm", Locale.ENGLISH);
         Date date = null;
         try{
@@ -137,6 +142,7 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         }catch (ParseException e){
             e.printStackTrace();
         }
+        //Toast.makeText(context, date.toString(), Toast.LENGTH_SHORT).show();
         return date;
     }
 
