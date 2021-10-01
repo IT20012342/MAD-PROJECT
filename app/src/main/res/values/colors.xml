@@ -19,12 +19,12 @@
     <color name="pink">#ff6666</color>
     <color name="grey">#666666</color>
     <color name="colorButton">#550080</color>
-    <color name="colorButtonNew">#0088cc</color>
     <color name="colorTile">#0d1a26</color>
     <color name="colorTileText">#fff</color>
     <color name="colorText">#fff</color>
     <color name="row">#333333</color>
     <color name="PopupView">#00615f</color>
+    <color name="colorButtonNew">#0088cc</color>
 
 
 

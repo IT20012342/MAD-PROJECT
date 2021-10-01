@@ -1,4 +1,4 @@
-package com.example.teacherapp;
+/* package com.example.teacherapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -52,15 +52,6 @@ class attendanceAdapter extends FirebaseRecyclerAdapter<attendanceModel, attenda
 
     @NonNull
     @Override
-    protected void onBindViewHolder(@NonNull AttendanceViewholder holder, int i, @NonNull attendanceModel model) {
-        plots[i] += model.getCount();
-        holder.t.setText(model.getCount());
-
-        //Toast.makeText(this.context, plots.toString(), Toast.LENGTH_SHORT).show();
-    }
-
-    @NonNull
-    @Override
     public AttendanceViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_student, parent, false);
         return new attendanceAdapter.AttendanceViewholder(view);
@@ -77,3 +68,6 @@ class attendanceAdapter extends FirebaseRecyclerAdapter<attendanceModel, attenda
         }
     }
 }
+
+
+*/
