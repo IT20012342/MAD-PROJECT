@@ -19,6 +19,8 @@ import com.example.teacherapp.R;
 import com.example.teacherapp.ViewModel.NotesViewModel;
 import com.example.teacherapp.databinding.ActivityInsertNoteBinding;
 
+import org.xml.sax.ErrorHandler;
+
 import java.util.Date;
 
 
@@ -79,7 +81,15 @@ public class InsertNoteActivity extends AppCompatActivity {
             subtitle = binding.notesSubtitle.getText().toString();
             description = binding.notesDescription.getText().toString();
 
+            if (title.isEmpty()) {
+                binding.notesTitle.requestFocus();
+                binding.notesTitle.setError("Field cannot be Empty");
+                //Toast.makeText(getApplicationContext(),"enter title",Toast.LENGTH_SHORT).show();
+            }
+
+            else{
             CreateNotes(title,subtitle,description);
+            }
 
         });
     }
@@ -91,10 +101,15 @@ public class InsertNoteActivity extends AppCompatActivity {
 
         Notes notes1 = new Notes();
         notes1.notesTitle= title;
+      /*  if(notes1.notesTitle.length()==0)
+        {
+            Toast.makeText(this, "Field is empty", Toast.LENGTH_SHORT).show();
+        } */
         notes1.notesSubtitle= subtitle;
         notes1.notes= description;
         notes1.notesDate= sequence.toString();
         notes1.notesPriority= priority;
+
 
         notesViewModel.insertNote(notes1);
 
