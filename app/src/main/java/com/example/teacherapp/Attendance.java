@@ -1,5 +1,7 @@
 package com.example.teacherapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -30,18 +32,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Calendar;
 import java.util.Date;
+
 import java.util.Map;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 
 public class Attendance extends AppCompatActivity {
@@ -54,7 +58,9 @@ public class Attendance extends AppCompatActivity {
     //TreeMap<String, Object> arr;
     private DatabaseReference referenceAttendance;
     private classModel model;
-    private String [] date;
+    private String[] date;
+    private ArrayList<Integer> graphValues = new ArrayList<Integer>();
+    private ProgressDialog saveloader;
 
 
     @Override
@@ -64,6 +70,9 @@ public class Attendance extends AppCompatActivity {
 
         //getting relevant model class
         model = passModel.getModel();
+        if (model == null) {
+            startActivity(new Intent(Attendance.this, classView.class));
+        }
         reference = passModel.getReference();
 
 
@@ -82,7 +91,7 @@ public class Attendance extends AppCompatActivity {
         }
 
 
-        Toast.makeText(this, "Loading" + model.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Loading " + model.getName(), Toast.LENGTH_SHORT).show();
 
         String pid = passModel.getModel().getId();
         assert pid != null;
@@ -125,16 +134,23 @@ public class Attendance extends AppCompatActivity {
                 addStudent();
                 return true;
             case R.id.analyze:
-                analyseAttendance();
-                startActivity(new Intent(this, LineGraph.class));
+                analyseGraph(null);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(Attendance.this, LineGraph.class));
                 return true;
+            default:
+                startActivity(new Intent(this, classView.class));
+                return false;
         }
 
-        startActivity(new Intent(this, classView.class));
-        return super.onOptionsItemSelected(item);
+
+        //return super.onOptionsItemSelected(item);
 
     }
-
 
 
     @Override
@@ -164,25 +180,13 @@ public class Attendance extends AppCompatActivity {
         Button save = myView.findViewById(R.id.saveClass);
         Button cancel = myView.findViewById(R.id.addClass);
 
-        //cancel button
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-
         //saveButton
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String sName = name.getText().toString().trim();
                 String sSid = sid.getText().toString().trim();
                 String id = reference.push().getKey();
-
 
                 if (TextUtils.isEmpty(sSid)) {
                     int x = (int) (Math.random() * 1000);
@@ -202,7 +206,7 @@ public class Attendance extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(Attendance.this, "Class Saved Successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Attendance.this, "Student Saved Successfully!", Toast.LENGTH_SHORT).show();
                                 saveloader.dismiss();
                             } else {
                                 String error = task.getException().toString();
@@ -214,6 +218,15 @@ public class Attendance extends AppCompatActivity {
 
                 }
 
+                dialog.dismiss();
+            }
+        });
+
+
+        //cancel button
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 dialog.dismiss();
             }
         });
@@ -240,27 +253,25 @@ public class Attendance extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-
-    // Function to tell the app to start getting
-    // data from database on starting of the activity
+    // Function to tell the app to start getting data from database on starting of the activity
     @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
     }
 
-    // Function to tell the app to stop getting
-    // data from database on stoping of the activity
+    // Function to tell the app to stop getting data from database on stoping of the activity
     @Override
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
     }
 
+
     private void storeAttendance() {
 
         Button submit = findViewById(R.id.submitAttendance);
-        ProgressDialog saveloader = new ProgressDialog(this);
+        saveloader = new ProgressDialog(this);
 
 
         final Calendar myCalendar = Calendar.getInstance();
@@ -296,43 +307,38 @@ public class Attendance extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Toast.makeText(Attendance.this, "Submitting", Toast.LENGTH_SHORT).show();
-
-                //Toast.makeText(Attendance.this, passModel.getList().toString(), Toast.LENGTH_SHORT).show();
-
                 Map<String, Object> mapValues = passModel.getList();
-                ;
+                int count = mapValues.size();
+
                 if (!mapValues.isEmpty()) {
+                    //mapValues.put("Count", mapValues.size());  //Adding the attendance count to db
 
-                    mapValues.put("Count", mapValues.size());
-
-
-
-                    if(date == null){
+                    if (date == null) {
                         date = DateFormat.getDateInstance().format(new Date()).split("\\s|,");
                     }
-                    mapValues.put("Date", date[0]+" "+date[1]); //adding current date to database
-
+                    mapValues.put("Date", date[0] + " " + date[1]); //adding current date to database
 
                     //creating node according to year and month
-
                     DatabaseReference newReferenceAttendance = referenceAttendance.child(model.getName()).child(date[3]).child(date[0]);
-                    String id = newReferenceAttendance.push().getKey();
 
+                    DatabaseReference pRef = referenceAttendance.child(model.getName()).child(date[3]); //parameter to  pass update graph data
+
+                    String id = newReferenceAttendance.push().getKey();
 
                     newReferenceAttendance.child(id).updateChildren(mapValues).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(Attendance.this, "Attendance marked Successfully!", Toast.LENGTH_SHORT).show();
-                                saveloader.dismiss();
+                                updateGraphData(pRef, date[0], count);
+                                //saveloader.dismiss();
                             } else {
                                 String error = task.getException().toString();
                                 Toast.makeText(Attendance.this, "Failed : " + error, Toast.LENGTH_SHORT).show();
                                 saveloader.dismiss();
                             }
-                            startActivity(new Intent(Attendance.this, classView.class));
+                           // startActivity(new Intent(Attendance.this, classView.class));
                         }
                     });
 
@@ -347,49 +353,121 @@ public class Attendance extends AppCompatActivity {
         });
     }
 
-    private void analyseAttendance() {
+    private void updateGraphData(DatabaseReference ref, String s, int count) {
 
-        String className = passModel.getModel().getName();
-        if(date == null){
-            date = DateFormat.getDateInstance().format(new Date()).split("\\s|,");
-        }
-        DatabaseReference ref = referenceAttendance.child(className).child(date[3]);
+        Map<String, Object> plots;
+        ref.child("summary").child(s).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                    Toast.makeText(Attendance.this, "Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
 
-        //Queue <String> months = new LinkedList <String>(Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"));  //"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
-        ArrayList <String> months = new ArrayList<>(Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"));
+                    long summaryCount = calculateSummary(task.getResult().getValue(), count);
 
 
-        for(int i=0; i<12; i++){
-            //ref = ref.;
-            /*FirebaseRecyclerOptions<attendanceModel> options = new FirebaseRecyclerOptions.Builder<attendanceModel>()
-                    .setQuery(ref, attendanceModel.class)
-                    .build(); */
-            // Connecting object of required Adapter class to
-            // the Adapter class itself
-
-            ref.child(months.get(i)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.e("firebase", "Error getting data", task.getException());
+                    summary(ref, s, summaryCount);
+                    /*if (task.getResult().getValue() == null) {
+                        //if there is key value pair in data base add the current count to db
+                        summary(ref, s, count);
                     }
-                    else {
-                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                        if(String.valueOf(task.getResult().getValue()) != null){
-                            //Toast.makeText(Attendance.this, String.valueOf(task.getResult().getValue()), Toast.LENGTH_SHORT).show();
-                        }
+                    else{
+                        //add previous count + current count
+                        long newCount = count + (long) task.getResult().getValue();
+                        //Toast.makeText(Attendance.this,(int)newCount, Toast.LENGTH_SHORT).show();
+                        summary(ref, s, newCount);
+                    }*/
 
-                    }
+
                 }
-            });
+            }
+        });
 
 
-            //attendanceAdapter adapter = new attendanceAdapter(this);
-            // Connecting Adapter class with the Recycler view
-            //recyclerView.setAdapter(adapter);
-     }
+    }
 
-        //Toast.makeText(Attendance.this, months.toString(), Toast.LENGTH_SHORT).show();
+    private void summary(DatabaseReference ref, String s, long count) {
+
+        Map<String, Object> plots = new TreeMap<>();
+        plots.put(s, count);
+
+        ref.child("summary").updateChildren(plots).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(Attendance.this, "Attendance marked Successfully!", Toast.LENGTH_SHORT).show();
+                    //saveloader.dismiss();
+                } else {
+                    String error = task.getException().toString();
+                    Toast.makeText(Attendance.this, "Failed : " + error, Toast.LENGTH_SHORT).show();
+                    //saveloader.dismiss();
+                }
+                startActivity(new Intent(Attendance.this, classView.class));
+            }
+        });
+    }
+
+
+    public void analyseGraph(String s) {
+
+        String year = s;
+        String className = passModel.getModel().getName();
+        if (year == null) {
+            String[] getDate = DateFormat.getDateInstance().format(new Date()).split("\\s|,");   //getting the current year
+            year = getDate[3];
+        }
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String onlineUserID = null;
+        if (mUser != null) {
+            onlineUserID = mUser.getUid();
+        } else {
+            //Toast.makeText(context, "Error Attendance authentication", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DatabaseReference summeryRef = FirebaseDatabase.getInstance().getReference().child("attendance").child(onlineUserID)
+                .child(className).child(year).child("summary");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get summaryAttendance object and use the values to update the UI
+                attendanceModel plots = dataSnapshot.getValue(attendanceModel.class);
+                if (plots == null) {
+                    new plotModel(new attendanceModel());
+                } else {
+                    new plotModel(plots);
+                }
+                //startActivity(new Intent(Attendance.this, LineGraph.class));
+                //finish();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        summeryRef.addValueEventListener(postListener);
+
+    }
+
+
+    long calculateSummary(Object value, int count) {
+
+        if (value == null) {
+            //if there is key value pair in data base add the current count to db
+            return count;
+        } else {
+            //add previous count + current count
+            long newCount = count + (long) value;
+            //Toast.makeText(Attendance.this,(int)newCount, Toast.LENGTH_SHORT).show();
+            return newCount;
+        }
+
     }
 
 }

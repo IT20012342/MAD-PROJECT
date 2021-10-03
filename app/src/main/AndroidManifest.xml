@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.teacherapp" >
+    package="com.example.teacherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -12,7 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/HiddenTitleTheme" >
+        android:theme="@style/HiddenTitleTheme">
+        <activity
+            android:name=".AverageCal"
+            android:exported="true" />
         <activity
             android:name=".CalculatorsScreen"
             android:exported="true" />
@@ -63,7 +66,7 @@
             android:name=".LineGraph"
             android:exported="true"
             android:label="ClassName"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".ResetPasswordActivity"
             android:exported="true" />
@@ -86,7 +89,7 @@
             android:theme="@style/Theme.TeacherApp.NoActionBar" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -97,8 +100,7 @@
         <receiver
             android:name=".AlarmReciever"
             android:enabled="true"
-            android:exported="true" >
-        </receiver>
+            android:exported="true"></receiver>
     </application>
 
 </manifest>

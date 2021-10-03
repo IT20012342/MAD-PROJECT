@@ -28,6 +28,8 @@ public class LineGraph extends AppCompatActivity {
             ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.purple_500));
             actionBar.setBackgroundDrawable(colorDrawable);
 
+            actionBar.setTitle("Attendance Analyse");
+
             // showing the back button in action bar
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -38,7 +40,8 @@ public class LineGraph extends AppCompatActivity {
     //back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        startActivity(new Intent(this, Attendance.class));
+        startActivity(new Intent(LineGraph.this, Attendance.class));
+        this.finish();
         return super.onOptionsItemSelected(item);
 
     }
