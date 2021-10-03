@@ -66,7 +66,7 @@
                 android:text="Priority"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:fontFamily="@font/product_sans_regular"
                 android:textSize="18sp"
                 />

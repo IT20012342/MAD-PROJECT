@@ -121,8 +121,7 @@ public class NotesActivity extends AppCompatActivity {
                     filternotesallList= notes;
                 }
             });
-        }
-    }
+        }}
 
     public void setAdapter(List<Notes> notes) {
         notesRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
