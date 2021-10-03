@@ -160,13 +160,10 @@ public class UpdateNotesActivity extends AppCompatActivity {
                 finish();
 
             });
-
             no.setOnClickListener(v -> {
                 sheetDialog.dismiss();
             });
-
             sheetDialog.show();
-
         }
         return true;
     }

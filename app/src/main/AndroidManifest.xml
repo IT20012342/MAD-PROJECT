@@ -39,8 +39,7 @@
             android:theme="@style/ActionBarTheme" />
         <activity
             android:name=".GPAcal"
-            android:exported="true"
-            android:theme="@style/ActionBarTheme" />
+            android:exported="true"/>
         <activity
             android:name=".ScanQRActivity"
             android:exported="true" />
