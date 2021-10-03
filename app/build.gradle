@@ -9,6 +9,14 @@ android {
         unitTests.returnDefaultValues = true
     }
 
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+
+        unitTests.all {
+            useJUnitPlatform() // <--- this is the important part
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.teacherapp"
         minSdk 21
@@ -57,7 +65,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:21.4.0'
 
 
-    testImplementation 'junit:junit:4.12'
+    //testImplementation 'junit:junit:4.12'
     // Optional -- Robolectric environment
     testImplementation 'androidx.test:core:1.4.0'
     // Optional -- Mockito framework
@@ -69,12 +77,14 @@ dependencies {
 
     //testImplementation 'junit:junit:4.+'
 
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.1"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.1"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.7.1"
 
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.2"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.2"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:5.3.2"
-    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.3.2"
 
     //androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
