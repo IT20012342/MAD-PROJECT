@@ -15,7 +15,9 @@ public class Testing {
     private AverageCal averagecal;
 
     private Attendance attendance;
-    
+
+    private GPAcal gpAcal;
+
 
     @BeforeEach
     public void setUp(){
@@ -24,6 +26,8 @@ public class Testing {
         averagecal = new AverageCal();
 
         attendance = new Attendance();
+
+        gpAcal = new GPAcal();
     }
 
     @Test
@@ -51,7 +55,7 @@ public class Testing {
         assertEquals(80.0, result);
     }
   
-  //IT20188054
+    //IT20188054
   
     @Test
     public void summaryCalculation_isCorrect() {
@@ -60,6 +64,13 @@ public class Testing {
         Assert.assertEquals(20, result);
     }
 
+    //IT20211332
+    @Test
+    public void checkCounter() throws Exception {
+        //assertEquals(4.0, GPAcal.getCounter(3,4.0));
+        double result = gpAcal.getCounter(3, 4.0);
+        assertEquals(12.0, result);
+    }
 
 
 }
