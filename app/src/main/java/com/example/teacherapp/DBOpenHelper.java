@@ -22,6 +22,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     private static final String DROP_EVENTS_TABLE = "DROP TABLE IF EXISTS "+DBStructure.EVENT_TABLE_NAME;
 
+    //create db
     public DBOpenHelper(@Nullable Context context) {
         super(context, DBStructure.DB_NAME, null, DBStructure.DB_VERSION);
     }

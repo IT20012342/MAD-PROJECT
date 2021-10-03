@@ -58,9 +58,9 @@ public class MyGridAdapter extends ArrayAdapter {
         }else{
             view.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimaryDark));
         }
-        if(currentDay==DayNo){
+        /*if(currentDay==DayNo){
             view.setBackgroundColor(getContext().getResources().getColor(R.color.teal_700));
-        }
+        }*/
 
 
         TextView DAY_NUMBER = view.findViewById(R.id.calendar_day);
@@ -68,6 +68,7 @@ public class MyGridAdapter extends ArrayAdapter {
         DAY_NUMBER.setText(String.valueOf(DayNo));
         Calendar eventCalendar = Calendar.getInstance();
         ArrayList<String> arrayList = new ArrayList<>();
+        //getting number of events per day
         for(int i=0; i<events.size();i++){
             eventCalendar.setTime(ConvertStringToDate(events.get(i).getDATE()));
             if(DayNo == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH)+1
