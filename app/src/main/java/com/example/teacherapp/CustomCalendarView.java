@@ -86,6 +86,7 @@ public class CustomCalendarView extends LinearLayout {
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //adding events(st)
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -130,6 +131,7 @@ public class CustomCalendarView extends LinearLayout {
                 final String date = eventDateFormat.format(dates.get(position));
                 final String month = monthFormat.format(dates.get(position));
                 final  String year = yearFormat.format(dates.get(position));
+                //calling save event with respect to alarm status
                 AddEvent.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -161,6 +163,7 @@ public class CustomCalendarView extends LinearLayout {
             }
         });
 
+        //get events list(st)
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -221,7 +224,7 @@ public class CustomCalendarView extends LinearLayout {
     }
 
 
-
+    //get events list per day
     private  ArrayList<Events> CollectEventsByDate(String date){
         ArrayList<Events> arrayList = new ArrayList<>();
         dbOpenHelper = new DBOpenHelper(context);
@@ -247,7 +250,6 @@ public class CustomCalendarView extends LinearLayout {
 
     }
 
-
     private  void SaveEvent(String event, String time, String date, String month, String year, String notify){
         dbOpenHelper = new DBOpenHelper(context);
         SQLiteDatabase database = dbOpenHelper.getWritableDatabase();
@@ -255,6 +257,7 @@ public class CustomCalendarView extends LinearLayout {
         dbOpenHelper.close();
     }
 
+    //initializing calendar view
     private  void InitializeLayout(){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.calendar_layout, this);
@@ -264,6 +267,7 @@ public class CustomCalendarView extends LinearLayout {
         gridView = view.findViewById(R.id.gridView);
     }
 
+    //setting up the initialized calendar
     public void SetUpCalendar(){
         String currentDate = dateFormat.format(calendar.getTime());
         CurrentDate.setText(currentDate);
@@ -285,7 +289,7 @@ public class CustomCalendarView extends LinearLayout {
     }
 
 
-
+    //to get eventlist per day
     private void CollectEventsPerMonth(String Month, String year){
         eventList.clear();
         dbOpenHelper = new DBOpenHelper(context);
