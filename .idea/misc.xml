@@ -11,11 +11,10 @@
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/add_class.xml" value="0.176" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/app_bar_main.xml" value="0.22871376811594202" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/content_main.xml" value="0.176" />
-
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/fragment_graph_generator.xml" value="0.21403508771929824" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/more_info.xml" value="0.264" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/nav_header_main.xml" value="0.22871376811594202" />
-        <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/row.xml" value="0.2" />
+        <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/row.xml" value="0.4" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/row_student.xml" value="0.25" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/todoretrieved_layout.xml" value="0.19791666666666666" />
         <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/update_class.xml" value="0.25416666666666665" />
@@ -83,15 +82,6 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/menu/search_notes.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17407407407407408" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.17407407407407408" />
-
-        <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/nav_header_main.xml" value="0.22871376811594202" />
-        <entry key="..\:/MyDatabase/SLIIT/Y2S2/MAD/MAD Project/KotlinKillerz/MAD-PROJECT/app/src/main/res/layout/row.xml" value="0.4" />
-        <entry key="..\:/Users/Avi/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/background.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/Avi/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/drawable/buttons.xml" value="0.1" />
-        <entry key="..\:/Users/Avi/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_main.xml" value="0.18617021276595744" />
-        <entry key="..\:/Users/Avi/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/activity_voice_cal.xml" value="0.33" />
-        <entry key="..\:/Users/Avi/AndroidStudioProjects/MAD-PROJECT/app/src/main/res/layout/content_main.xml" value="0.3423913043478261" />
-
         <entry key="..\:/Users/Isuru Prabhath/AndroidStudioProjects/TeacherApp/app/src/main/res/drawable/nav_toodolist.xml" value="0.2203125" />
         <entry key="..\:/Users/Isuru Prabhath/AndroidStudioProjects/TeacherApp/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/AndroidStudioProjects/TeacherApp/app/src/main/res/layout/app_bar_main.xml" value="0.20416666666666666" />
@@ -106,6 +96,7 @@
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.2203125" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_addtodo.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_average_cal.xml" value="0.22" />
+        <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_calculators_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_generate_qrcode.xml" value="0.22" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Isuru Prabhath/Desktop/MAD_Project-IT20012342/MAD_Project-IT20012342/app/src/main/res/layout/activity_main.xml" value="0.1" />
