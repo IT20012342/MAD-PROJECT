@@ -42,6 +42,8 @@ public class Testing {
         assertEquals("07:00",Result);
     }
 
+
+
     // IT20012342
     @Test
     public  void testTotal() {
@@ -68,9 +70,7 @@ public class Testing {
     @Test
     public void checkCounter() throws Exception {
         //assertEquals(4.0, GPAcal.getCounter(3,4.0));
-        double result = gpAcal.getCounter(3, 4.0);
+        double result = gpAcal.getCounter(3.0, 4.0);
         assertEquals(12.0, result);
     }
-
-
 }
