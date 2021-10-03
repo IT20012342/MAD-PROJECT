@@ -58,6 +58,15 @@ public class AverageCal extends AppCompatActivity {
         });
     }
 
+    public int getTotal(int m1, int m2, int m3) {
+        return m1+m2+m3;
+    }
+
+    public double getAverage(int m1, int m2, int m3) {
+        int tot = m1+m2+m3;
+        return tot/3.0;
+    }
+
     public void marksCal() {
         int m1, m2, m3, tot;
         String mrk1, mrk2, mrk3;
@@ -99,8 +108,8 @@ public class AverageCal extends AppCompatActivity {
             m2 = Integer.parseInt(mrk2);
             m3 = Integer.parseInt(mrk3);
 
-            tot = m1 + m2 + m3;
-            avg = tot/3.0;
+            tot = getTotal(m1,m2,m3);
+            avg = getAverage(m1,m2,m3);
 
             total.setText(String.valueOf(tot));
             average.setText(String.valueOf(avg));

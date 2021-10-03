@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 
 public class CalculatorsScreen extends AppCompatActivity {
-    ImageView gpai, vcal;
+    ImageView gpai, vcal, averagecal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class CalculatorsScreen extends AppCompatActivity {
 
         gpai = findViewById(R.id.gpaii);
         vcal = findViewById(R.id.voicecal);
+        averagecal = findViewById(R.id.averagecalimg);
 
         gpai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +34,15 @@ public class CalculatorsScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculatorsScreen.this, VoiceCal.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        averagecal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CalculatorsScreen.this, AverageCal.class);
                 startActivity(intent);
                 finish();
             }

@@ -99,26 +99,30 @@ public class classView extends AppCompatActivity {
             onlineUserID = mUser.getUid();
         }
         reference = FirebaseDatabase.getInstance().getReference().child("classes").child(onlineUserID);
-;
-
         recyclerView = findViewById(R.id.recyclerClass);
 
-        // To display the Recycler view linearly
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // It is a class provide by the FirebaseUI to make a
-        // query in the database to fetch appropriate data
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); // To display the Recycler view linearly
+        // It is a class provide by the FirebaseUI to make a query in the database to fetch appropriate data
         FirebaseRecyclerOptions<classModel> options = new FirebaseRecyclerOptions.Builder<classModel>()
                 .setQuery(reference, classModel.class)
                 .build();
-        // Connecting object of required Adapter class to
-        // the Adapter class itself
-        adapter = new classAdapter(options);
-        // Connecting Adapter class with the Recycler view
-        recyclerView.setAdapter(adapter);
 
+        adapter = new classAdapter(options);     //Connecting object required Adapter class
 
+        recyclerView.setAdapter(adapter);       // Connecting Adapter class with the Recycler view
+    }
 
+    // Function to tell the app to start getting data from database on starting of the activity
+    @Override protected void onStart()
+    {
+        super.onStart();
+        adapter.startListening();
+    }
+    // Function to tell the app to stop getting data from database on stoping of the activity
+    @Override protected void onStop()
+    {
+        super.onStop();
+        adapter.stopListening();
     }
 
 
@@ -175,28 +179,25 @@ public class classView extends AppCompatActivity {
                         String nTime = time.getText().toString().trim();
                         String id = reference.push().getKey();
 
-
                         if (TextUtils.isEmpty(nDescription)) {
-                            nDescription = "Auto Generated Description!";
+                            nDescription = "Auto Generated Description!"; //if the description is empty
                         }
                         if (TextUtils.isEmpty(nBatch)) {
                             int x = (int) (Math.random() * 1000);
                             nBatch = Integer.toString(x);
                         }
                         if (TextUtils.isEmpty(nTime)) {
-                            nTime = "00:00";
+                            nTime = "00:00";  //if the time field is empty
                         }
-
                         if (TextUtils.isEmpty(nClass)) {
-                            name.setError("Class name is required");
+                            name.setError("Class name is required");  //Validate whether Class name field is not empty
                             return;
                         } else {
                             saveloader.setMessage("Saving the new class");
                             saveloader.setCanceledOnTouchOutside(false);
                             saveloader.show();
-
                             classModel cmodel = new classModel(nClass, nDescription, nBatch, nTime, id);
-                            reference.child(id).setValue(cmodel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            reference.child(id).setValue(cmodel).addOnCompleteListener(new OnCompleteListener<Void>() {   //firebase database reference to add values
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
@@ -230,21 +231,7 @@ public class classView extends AppCompatActivity {
 
     }
 
-    // Function to tell the app to start getting
-    // data from database on starting of the activity
-  @Override protected void onStart()
-    {
-        super.onStart();
-        adapter.startListening();
-    }
 
-    // Function to tell the app to stop getting
-    // data from database on stoping of the activity
-    @Override protected void onStop()
-    {
-        super.onStop();
-        adapter.stopListening();
-    };
 
 }
 

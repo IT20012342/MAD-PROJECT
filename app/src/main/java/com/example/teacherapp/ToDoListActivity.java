@@ -131,7 +131,7 @@ public class ToDoListActivity extends AppCompatActivity {
                 }
 
                 if(TextUtils.isEmpty(nDescription)) {
-                    description.setError("Task is required");
+                    description.setError("Description is required");
                     return;
                 }
 
