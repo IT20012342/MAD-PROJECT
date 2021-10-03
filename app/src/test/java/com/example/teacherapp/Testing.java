@@ -11,22 +11,18 @@ import java.util.Date;
 
 public class Testing {
     private EventRecyclerAdapter eventRecyclerAdapter;
+
     private AverageCal averagecal;
 
     private Attendance attendance;
+    
 
     @BeforeEach
     public void setUp(){
         eventRecyclerAdapter = new EventRecyclerAdapter();
-    }
-  
-    @BeforeEach
-    public  void setup(){
+
         averagecal = new AverageCal();
-    }
-  
-    @BeforeEach
-    public void setup(){
+
         attendance = new Attendance();
     }
 
