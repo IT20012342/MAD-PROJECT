@@ -9,12 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
 
+import javax.annotation.Nullable;
+
 public class Testing {
     private EventRecyclerAdapter eventRecyclerAdapter;
 
     private AverageCal averagecal;
 
-    private Attendance attendance;
+    private SummaryCalculation attendance;
 
     private GPAcal gpAcal;
 
@@ -23,11 +25,11 @@ public class Testing {
     public void setUp(){
         eventRecyclerAdapter = new EventRecyclerAdapter();
 
-        averagecal = new AverageCal();
+        //averagecal = new AverageCal();
 
-        attendance = new Attendance();
+        attendance = new SummaryCalculation();
 
-        gpAcal = new GPAcal();
+        //gpAcal = new GPAcal();
     }
 
     @Test
@@ -58,12 +60,14 @@ public class Testing {
     }
   
     //IT20188054
-  
     @Test
     public void summaryCalculation_isCorrect() {
-        Object ob = null;
+
+        Object ob = 100L;  //Value retrieve  from the database  {Use object datatype since retrieve value from DB must be object}
+
         long result = attendance.calculateSummary(ob,20);
-        Assert.assertEquals(20, result);
+
+        Assert.assertEquals(120, result);
     }
 
     //IT20211332

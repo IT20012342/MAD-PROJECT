@@ -234,7 +234,6 @@ public class Attendance extends AppCompatActivity {
 
     }
 
-
     private void fetchStudent() {
         recyclerView = findViewById(R.id.recyclerClass);
 
@@ -365,21 +364,14 @@ public class Attendance extends AppCompatActivity {
                 } else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
 
-                    long summaryCount = calculateSummary(task.getResult().getValue(), count);
+                    SummaryCalculation sumCalc = new SummaryCalculation();  //creating summaryCalculation class
+
+
+                    //Get the summary count using the calculation function
+                    long summaryCount = sumCalc.calculateSummary(task.getResult().getValue(), count);
 
 
                     summary(ref, s, summaryCount);
-                    /*if (task.getResult().getValue() == null) {
-                        //if there is key value pair in data base add the current count to db
-                        summary(ref, s, count);
-                    }
-                    else{
-                        //add previous count + current count
-                        long newCount = count + (long) task.getResult().getValue();
-                        //Toast.makeText(Attendance.this,(int)newCount, Toast.LENGTH_SHORT).show();
-                        summary(ref, s, newCount);
-                    }*/
-
 
                 }
             }
@@ -408,6 +400,8 @@ public class Attendance extends AppCompatActivity {
             }
         });
     }
+
+
 
 
     public void analyseGraph(String s) {
@@ -456,7 +450,13 @@ public class Attendance extends AppCompatActivity {
     }
 
 
-    long calculateSummary(Object value, int count) {
+
+}
+
+
+
+class SummaryCalculation{
+    public long calculateSummary(Object value, int count) {
 
         if (value == null) {
             //if there is key value pair in data base add the current count to db
@@ -469,5 +469,4 @@ public class Attendance extends AppCompatActivity {
         }
 
     }
-
 }

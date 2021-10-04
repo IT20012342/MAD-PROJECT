@@ -103,6 +103,7 @@ public class classView extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // To display the Recycler view linearly
         // It is a class provide by the FirebaseUI to make a query in the database to fetch appropriate data
+
         FirebaseRecyclerOptions<classModel> options = new FirebaseRecyclerOptions.Builder<classModel>()
                 .setQuery(reference, classModel.class)
                 .build();
@@ -118,7 +119,7 @@ public class classView extends AppCompatActivity {
         super.onStart();
         adapter.startListening();
     }
-    // Function to tell the app to stop getting data from database on stoping of the activity
+    // Function to tell the app to stop getting data from database on stopping of the activity
     @Override protected void onStop()
     {
         super.onStop();
@@ -196,7 +197,12 @@ public class classView extends AppCompatActivity {
                             saveloader.setMessage("Saving the new class");
                             saveloader.setCanceledOnTouchOutside(false);
                             saveloader.show();
+
+
+                            //adding the input values to the model class
                             classModel cmodel = new classModel(nClass, nDescription, nBatch, nTime, id);
+
+
                             reference.child(id).setValue(cmodel).addOnCompleteListener(new OnCompleteListener<Void>() {   //firebase database reference to add values
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
