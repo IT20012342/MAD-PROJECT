@@ -53,24 +53,15 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
 
 
     // Function to bind the view in Card view(here
-    // "person.xml") iwth data ins
-    // model class(here "person.class")
+    // "row.xml") with data ins
+    // model class(here "classModel.class")
     @Override
     protected void onBindViewHolder(@NonNull classViewholder holder, int position, @NonNull classModel model) {
 
         holder.name.setText(model.getName());
 
-        //holder.name.setText("testingBn");
-
         holder.description.setText(model.getDescription());
-        //holder.description.setText("Hello World!");
 
-        //holder.batch.setText(model.getBatch());
-        //holder.time.setText(model.getTime());
-
-        //cArrayList.add(model);
-
-        //FirebaseValues
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         onlineUserID = null;
         if (mUser != null) {
@@ -125,8 +116,6 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
                 //adding click listener
                 Context context = holder.dotClass.getContext();
 
-                Toast.makeText(context,"Working",Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(context, Attendance.class);
                 passModel m = new passModel(model,reference);
                 context.startActivity(intent);
@@ -145,6 +134,8 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
         return new classAdapter.classViewholder(view);
     }
+
+
 
     // Sub Class to create references of the views in Crad
     // view (here "person.xml")
@@ -279,11 +270,13 @@ class classAdapter extends FirebaseRecyclerAdapter<classModel, classAdapter.clas
 
 
     private void deleteClass(Context context, classModel model) {
+
         reference.child(model.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
                 deleteAttendance(model.getName());
+
                 Toast.makeText(context, "Class Deleted Successfully", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
